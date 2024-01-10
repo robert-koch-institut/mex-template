@@ -21,11 +21,11 @@ ruff = "^0.1.9"
 sphinx = "^6.2.1"
 sphinx-book-theme = "^1.1.0"
 
-[tool.ipdb]
-context = 5
-
 [tool.cruft]
 template = "https://github.com/robert-koch-institut/mex-template"
+
+[tool.ipdb]
+context = 5
 
 [tool.mypy]
 python_version = "3.11"
