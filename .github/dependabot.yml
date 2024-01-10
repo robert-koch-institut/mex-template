@@ -1,0 +1,9 @@
+version: 2
+updates:
+  - package-ecosystem: "{{ cookiecutter.package_ecosystem }}"
+    allow:
+      - dependency-type: "all"
+    directory: "/"
+    open-pull-requests-limit: 1
+    schedule:
+      interval: "weekly"
