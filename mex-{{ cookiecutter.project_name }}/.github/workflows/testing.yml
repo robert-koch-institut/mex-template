@@ -25,9 +25,9 @@ jobs:
           cache-name: cache-requirements
         with:
           path: ~/.cache/pip
-          key: ${{ env.cache-name }}-${{ hashFiles('requirements.txt') }}
+          {% raw -%}key: ${{ env.cache-name }}-${{ hashFiles('requirements.txt') }}{%- endraw %}
           restore-keys: |
-            ${{ env.cache-name }}-
+            {% raw -%}${{ env.cache-name }}-{%- endraw %}
 
       - name: Cache poetry
         uses: actions/cache@v3
@@ -35,9 +35,9 @@ jobs:
           cache-name: cache-poetry
         with:
           path: ~/.cache/pip
-          key: ${{ env.cache-name }}-${{ hashFiles('**/poetry.lock') }}
+          {% raw -%}key: ${{ env.cache-name }}-${{ hashFiles('**/poetry.lock') }}{%- endraw %}
           restore-keys: |
-            ${{ env.cache-name }}-
+            {% raw -%}${{ env.cache-name }}-{%- endraw %}
 
       - name: Setup python
         uses: actions/setup-python@v4
