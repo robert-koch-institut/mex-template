@@ -1,6 +1,6 @@
 version: 2
 updates:
-  - package-ecosystem: "{{ cookiecutter.package_ecosystem }}"
+  - package-ecosystem: "pip"
     allow:
       - dependency-type: "all"
     directory: "/"

@@ -1,12 +1,6 @@
-# MEx {{ cookiecutter.project_name }}
+# MEx template
 
-{{ cookiecutter.short_summary }}
-
-[![testing](https://github.com/robert-koch-institut/mex-{{ cookiecutter.project_name }}/actions/workflows/testing.yml/badge.svg)](https://github.com/robert-koch-institut/mex-{{ cookiecutter.project_name }}/actions/workflows/testing.yml)
-[![linting](https://github.com/robert-koch-institut/mex-{{ cookiecutter.project_name }}/actions/workflows/linting.yml/badge.svg)](https://github.com/robert-koch-institut/mex-{{ cookiecutter.project_name }}/actions/workflows/linting.yml)
-[![cve-scan](https://github.com/robert-koch-institut/mex-{{ cookiecutter.project_name }}/actions/workflows/cve-scan.yml/badge.svg)](https://github.com/robert-koch-institut/mex-{{ cookiecutter.project_name }}/actions/workflows/cve-scan.yml)
-[![documentation](https://github.com/robert-koch-institut/mex-{{ cookiecutter.project_name }}/actions/workflows/documentation.yml/badge.svg)](https://robert-koch-institut.github.io/mex-{{ cookiecutter.project_name }})
-
+Cookiecutter template for MEx python projects.
 
 ## project
 
@@ -37,41 +31,40 @@ data Findable, Accessible, Interoperable and Reusable.
 
 ## package
 
-{{ cookiecutter.long_summary }}
+The `mex-template` is a [cookiecutter](https://www.cookiecutter.io/) template to make
+starting a new python project easier and to keep boilerplate files harmonized using
+[cruft](https://cruft.github.io/cruft/).
 
 ## license
 
 This package is licensed under the [MIT license](/LICENSE). All other software
 components of the MEx project are open-sourced under the same license as well.
 
-## development
+## usage
 
 ### installation
 
 - on unix, consider using pyenv https://github.com/pyenv/pyenv
   - get pyenv `curl https://pyenv.run | bash`
   - install 3.11 `pyenv install 3.11`
-  - create env `pyenv virtualenv 3.11 mex`
-  - go to repo root
-  - use env `pyenv local mex`
-  - run `make install`
+  - use version `pyenv global 3.11`
+  - run `pip install cruft`
 - on windows, see https://python-poetry.org/docs/managing-environments
   - install `python3.11` in your preferred way
-  - go to repo root
-  - run `.\mex.bat install`
+  - run `pip install cruft`
 
-### linting and testing
+## usage
 
-- on unix run `make test`
-- on windows run `.\mex.bat test`
-- or run manually
-  - linter checks via `pre-commit run --all-files`
-  - all tests via `poetry run pytest`
+### new project
 
-### updating dependencies
+- starting a new project using this template is easy
+- go to your home / code folder
+- run `cruft create https://github.com/robert-koch-institut/mex-template`
+- fill in the prompted values
 
-- update global dependencies in `requirements.txt` manually
-- update git hooks with `pre-commit autoupdate`
-- show outdated dependencies with `poetry show --outdated`
-- update dependencies in poetry using `poetry update --lock`
-- update github actions manually in `.github\workflows\default.yml`
+### update existing
+
+- there are two tools to help you update the boilerplate of existing projects
+- go to your local checkout of a project using this template
+- `cruft diff` shows you the difference between the template an your local files
+- `cruft update` will attempt to update the boilerplate files and content automatically
