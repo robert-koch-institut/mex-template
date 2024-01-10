@@ -75,4 +75,4 @@ components of the MEx project are open-sourced under the same license as well.
 - update git hooks with `pre-commit autoupdate`
 - show outdated dependencies with `poetry show --outdated`
 - update dependencies in poetry using `poetry update --lock`
-- update github actions manually in `.github\workflows\default.yml`
+- update github actions manually in `.github/workflows/*.yml`
