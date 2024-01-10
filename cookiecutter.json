@@ -1,0 +1,4 @@
+{
+    "package_ecosystem": ["pip", "npm"],
+    "project_name": "project"
+}
