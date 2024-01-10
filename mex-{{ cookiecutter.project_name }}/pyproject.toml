@@ -48,7 +48,7 @@ addopts = [
     "--cov-report=term-missing:skip-covered",
     "--cov-fail-under=95",
     "--cov-branch",
-    "--pdbcls=IPython.terminal.debugger:TerminalPdb"
+    "--pdbcls=IPython.terminal.debugger:TerminalPdb",
 ]
 markers = "integration: mark a test as integration test"
 
