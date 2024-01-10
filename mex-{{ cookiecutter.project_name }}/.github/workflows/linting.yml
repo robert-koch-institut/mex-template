@@ -25,9 +25,9 @@ jobs:
           cache-name: cache-requirements
         with:
           path: ~/.cache/pip
-          {% raw -%}key: ${{ env.cache-name }}-${{ hashFiles('requirements.txt') }}{%- endraw %}
+          {% raw %}key: ${{ env.cache-name }}-${{ hashFiles('requirements.txt') }}{% endraw %}
           restore-keys: |
-            {% raw -%}${{ env.cache-name }}-{%- endraw %}
+            {% raw %}${{ env.cache-name }}-{% endraw %}
 
       - name: Setup python
         uses: actions/setup-python@v4

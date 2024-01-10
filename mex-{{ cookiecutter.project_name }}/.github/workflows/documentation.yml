@@ -35,9 +35,9 @@ jobs:
           cache-name: cache-requirements
         with:
           path: ~/.cache/pip
-          {% raw -%}key: ${{ env.cache-name }}-${{ hashFiles('requirements.txt') }}{%- endraw %}
+          {% raw %}key: ${{ env.cache-name }}-${{ hashFiles('requirements.txt') }}{% endraw %}
           restore-keys: |
-            {% raw -%}${{ env.cache-name }}-{%- endraw %}
+            {% raw %}${{ env.cache-name }}-{% endraw %}
 
       - name: Cache poetry
         uses: actions/cache@v3
@@ -45,9 +45,9 @@ jobs:
           cache-name: cache-poetry
         with:
           path: ~/.cache/pip
-          {% raw -%}key: ${{ env.cache-name }}-${{ hashFiles('**/poetry.lock') }}{%- endraw %}
+          {% raw %}key: ${{ env.cache-name }}-${{ hashFiles('poetry.lock') }}{% endraw %}
           restore-keys: |
-            {% raw -%}${{ env.cache-name }}-{%- endraw %}
+            {% raw %}${{ env.cache-name }}-{% endraw %}
 
       - name: Setup python
         uses: actions/setup-python@v4
@@ -71,7 +71,7 @@ jobs:
   deploy:
     environment:
       name: github-pages
-      {% raw -%}url: ${{ steps.deployment.outputs.page_url }}{%- endraw %}
+      {% raw %}url: ${{ steps.deployment.outputs.page_url }}{% endraw %}
     runs-on: ubuntu-latest
     needs: build
     steps:
