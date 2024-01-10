@@ -37,7 +37,7 @@ data Findable, Accessible, Interoperable and Reusable.
 
 ## package
 
-{{ cookiecutter.long_summary }}
+{{ cookiecutter.long_summary | wordwrap(88, break_long_words=False, break_on_hyphens=False) }}
 
 ## license
 
