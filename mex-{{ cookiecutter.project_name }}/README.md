@@ -66,6 +66,7 @@ components of the MEx project are open-sourced under the same license as well.
 - or run manually
   - linter checks via `pre-commit run --all-files`
   - all tests via `poetry run pytest`
+  - just unit tests via `poetry run pytest -m "not integration"`
 
 ### updating dependencies
 
