@@ -12,12 +12,12 @@ packages = [{ include = "mex" }]
 python = "^3.11"
 
 [tool.poetry.group.dev.dependencies]
-black = "^23.11.0"
+black = "^23.12.1"
 ipdb = "^0.13.13"
 mypy = "^1.8.0"
-pytest = "^7.4.3"
+pytest = "^7.4.4"
 pytest-cov = "^4.1.0"
-ruff = "^0.1.9"
+ruff = "^0.1.11"
 sphinx = "^6.2.1"
 sphinx-book-theme = "^1.1.0"
 
