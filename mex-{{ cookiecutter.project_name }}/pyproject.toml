@@ -21,6 +21,9 @@ ruff = "^0.1.9"
 sphinx = "^6.2.1"
 sphinx-book-theme = "^1.1.0"
 
+[tool.poetry.scripts]
+{{ cookiecutter.project_name }} = "mex.{{ cookiecutter.project_name }}.main:main"
+
 [tool.cruft]
 template = "https://github.com/robert-koch-institut/mex-template"
 
