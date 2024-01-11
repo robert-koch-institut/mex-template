@@ -17,6 +17,7 @@ repos:
       - id: pretty-format-json
         name: json
         args: [--autofix]
+        exclude: .cruft.json
       - id: check-yaml
         name: yaml
   - repo: https://github.com/python-poetry/poetry
