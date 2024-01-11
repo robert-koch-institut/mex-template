@@ -36,7 +36,7 @@ data Findable, Accessible, Interoperable and Reusable.
 
 ## package
 
-{{ cookiecutter.long_summary | wordwrap(88, break_long_words=False, break_on_hyphens=False) }}
+{{ cookiecutter.long_summary|wordwrap(88, break_long_words=False, break_on_hyphens=False) }}
 
 ## license
 
@@ -76,3 +76,18 @@ components of the MEx project are open-sourced under the same license as well.
 - show outdated dependencies with `poetry show --outdated`
 - update dependencies in poetry using `poetry update --lock`
 - update github actions manually in `.github/workflows/*.yml`
+
+### container workflow
+
+- build container with `make container`
+- run directly using docker `make run`
+- start with docker-compose `make start`
+
+## commands
+
+- run `poetry run {command} --help` to print instructions
+- run `poetry run {command} --debug` for interactive debugging
+
+### {{ cookiecutter.project_name }}
+
+- `{{ cookiecutter.project_name }}` starts the {{ cookiecutter.project_name }} service

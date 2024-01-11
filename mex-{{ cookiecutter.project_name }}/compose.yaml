@@ -1,0 +1,21 @@
+version: "3.8"
+services:
+  mex-{{ cookiecutter.project_name }}:
+    build:
+      context: .
+    ports:
+      - 8081:8081
+    environment:
+      - MEX_{{ cookiecutter.project_name|upper }}_HOST=0.0.0.0
+      - MEX_{{ cookiecutter.project_name|upper }}_PORT=8080
+    expose:
+      - 8081
+    healthcheck:
+      test: [ "CMD", "curl", "http://0.0.0.0:8080/_system/check" ]
+      interval: 60s
+      timeout: 5s
+      retries: 5
+    volumes:
+      - data:/app/data
+volumes:
+  data:
