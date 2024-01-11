@@ -26,6 +26,7 @@ sphinx-book-theme = "^1.1.0"
 
 [tool.cruft]
 template = "https://github.com/robert-koch-institut/mex-template"
+skip = ["tests/conftest.py", "mex/{{ cookiecutter.project_name }}/main.py", "*/*.pyc"]
 
 [tool.ipdb]
 context = 5
