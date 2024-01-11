@@ -77,6 +77,13 @@ components of the MEx project are open-sourced under the same license as well.
 - update dependencies in poetry using `poetry update --lock`
 - update github actions manually in `.github/workflows/*.yml`
 
+### creating release
+
+- update version, eg `poetry version minor`
+- commit update `git commit --message "..." pyproject.toml`
+- create a tag `git tag ...`
+- push `git push --follow-tags`
+
 ### container workflow
 
 - build container with `make container`
