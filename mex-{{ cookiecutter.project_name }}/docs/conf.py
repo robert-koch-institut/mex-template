@@ -5,5 +5,5 @@ html_theme = "alabaster"
 napoleon_google_docstring = True
 napoleon_include_init_with_doc = True
 napoleon_include_private_with_doc = True
-project = "{{ cookiecutter.project_name }}"
+project = "mex-{{ cookiecutter.project_name }}"
 templates_path = ['.']
