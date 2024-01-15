@@ -30,23 +30,13 @@ jobs:
           restore-keys: |
             {% raw %}${{ env.cache-name }}-{% endraw %}
 
-      - name: Cache poetry
-        uses: actions/cache@v3
-        env:
-          cache-name: cache-poetry
-        with:
-          path: ~/.cache/pip
-          {% raw %}key: ${{ env.cache-name }}-${{ hashFiles('poetry.lock') }}{% endraw %}
-          restore-keys: |
-            {% raw %}${{ env.cache-name }}-{% endraw %}
-
       - name: Setup python
         uses: actions/setup-python@v4
         with:
           python-version: 3.11
 
       - name: Install requirements
-        run: make install
+        run: make setup
 
       - name: Check template
-        run: poetry run cruft check
+        run: cruft check
