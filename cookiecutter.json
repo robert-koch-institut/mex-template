@@ -1,5 +1,5 @@
 {
   "project_name": "project",
-  "short_summary": "Lorem ipsum dolor sit amet.",
-  "long_summary": "Lorem ipsum dolor sit amet, consectetur adipiscing elit."
+  "short_summary": "Write a short tagline for your project.",
+  "long_summary": "Explain your project in a bit more detail, 50-100 words would be ideal. Line-breaks are not needed as the text will be auto-wrapped."
 }
