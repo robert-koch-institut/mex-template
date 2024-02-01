@@ -7,10 +7,3 @@ updates:
     open-pull-requests-limit: 1
     schedule:
       interval: "monthly"
-  - package-ecosystem: "pip"
-    allow:
-      - dependency-type: "all"
-    directory: "/"
-    open-pull-requests-limit: 1
-    schedule:
-      interval: "daily"
