@@ -11,6 +11,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - create CHANGELOG.md
 - configure dependabot updates for github-actions
+- add EOF, WS and BOM githooks
+- add A, B, PERF and UP ruff linter rule sets
 
 ### Changes
 
