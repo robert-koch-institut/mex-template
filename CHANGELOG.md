@@ -16,6 +16,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - add pytest-random as dev dependency
 - activate random pytest order by default
 - add bot user as assignee to dependabot prs
+- add pr author as assignee for user prs
 
 ### Changes
 
