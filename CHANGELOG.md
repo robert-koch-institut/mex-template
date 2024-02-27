@@ -25,6 +25,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - always tag dependabot prs as `dependabot`
 - narrow pull-request workflow trigger to reduce duplicate runs
 - update github actions dependencies
+- let cookiecutter workflow create PRs to run cruft update
 
 ### Deprecated
 
