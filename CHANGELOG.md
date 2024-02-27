@@ -16,7 +16,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - add pytest-random as dev dependency
 - activate random pytest order by default
 - add bot user as assignee to dependabot prs
-- add pr author as assignee for user prs
+- add workflow to set pr author as assignee for user prs
+- let cookiecutter workflow create PRs to run cruft update
 
 ### Changes
 
@@ -26,7 +27,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - always tag dependabot prs as `dependabot`
 - narrow pull-request workflow trigger to reduce duplicate runs
 - update github actions dependencies
-- let cookiecutter workflow create PRs to run cruft update
+- update pre-commit/requirements.txt/poetry dependencies
+- set github actions dependabot to weekly
 
 ### Deprecated
 
