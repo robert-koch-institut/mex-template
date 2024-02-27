@@ -23,6 +23,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - rename cookiecutter workflow main job to `cruft`
 - update poetry and pre-commit dependencies
 - always tag dependabot prs as `dependabot`
+- narrow pull-request workflow trigger to reduce duplicate runs
+- update github actions dependencies
 
 ### Deprecated
 
