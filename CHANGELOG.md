@@ -15,6 +15,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - add A, B, PERF and UP ruff linter rule sets
 - add pytest-random as dev dependency
 - activate random pytest order by default
+- add code of conduct file
 
 ### Changes
 
