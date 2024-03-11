@@ -17,6 +17,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Fixed
 
+- fix finding of rejected cruft files
+
 ### Security
 
 ## [0.1.0] - 2024-03-11
