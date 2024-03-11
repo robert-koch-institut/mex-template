@@ -9,6 +9,20 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
+### Changes
+
+### Deprecated
+
+### Removed
+
+### Fixed
+
+### Security
+
+## [0.1.0] - 2024-03-11
+
+### Added
+
 - create CHANGELOG.md
 - configure dependabot updates for github-actions
 - add EOF, WS and BOM githooks
@@ -18,6 +32,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - add bot user as assignee to dependabot prs
 - add workflow to set pr author as assignee for user prs
 - let cookiecutter workflow create PRs to run cruft update
+- add code of conduct file
 
 ### Changes
 
@@ -30,12 +45,6 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - update pre-commit/requirements.txt/poetry dependencies
 - set github actions dependabot to weekly
 
-### Deprecated
-
-### Removed
-
 ### Fixed
 
 - do not run cve on Dependabot push events
-
-### Security
