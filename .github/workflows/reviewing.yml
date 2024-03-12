@@ -13,9 +13,8 @@ jobs:
     steps:
       - name: Add assignee
         env:
-          {% raw %}GITHUB_TOKEN: ${{ secrets.WORKFLOW_TOKEN }}{% endraw %}
+          GITHUB_TOKEN: ${{ secrets.WORKFLOW_TOKEN }}
         run: |
-          {% raw -%}
           user_name="${{ github.event.pull_request.user.login }}"
           user_type=$(gh api "users/${user_name}" --jq ".type")
           echo $user_name is a $user_type
@@ -26,4 +25,3 @@ jobs:
           if [[ -z "${{ github.event.pull_request.assignee.login }}" ]]; then
             gh pr edit ${{ github.event.pull_request.html_url }} --add-assignee "${user_name}"
           fi
-          {%- endraw %}

@@ -9,7 +9,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
+- add review assignment to mex-template itself
+
 ### Changes
+
+- improve prompt for project name
 
 ### Deprecated
 
@@ -18,6 +22,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Fixed
 
 - fix finding of rejected cruft files
+- fix dependabot pr review assignment
 
 ### Security
 
