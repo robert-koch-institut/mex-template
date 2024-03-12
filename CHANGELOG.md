@@ -9,6 +9,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
+- add review assignment to mex-template itself
+
 ### Changes
 
 - improve prompt for project name
