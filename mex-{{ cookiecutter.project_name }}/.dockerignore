@@ -121,10 +121,12 @@ dmypy.json
 .bandit
 .isort.cfg
 .mypy.ini
+.pdm-python
 .pre-commit-config.yaml
 .pydocstyle
 Makefile
 mex.bat
+pdm.lock
 poetry.lock
 poetry.toml
 pytest.ini
