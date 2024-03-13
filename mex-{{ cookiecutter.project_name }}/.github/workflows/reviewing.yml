@@ -13,7 +13,7 @@ jobs:
     steps:
       - name: Add assignee
         env:
-          {% raw %}GITHUB_TOKEN: ${{ secrets.WORKFLOW_TOKEN }}{% endraw %}
+          {% raw %}GH_TOKEN: ${{ secrets.WORKFLOW_TOKEN }}{% endraw %}
         run: |
           {% raw -%}
           user_name="${{ github.event.pull_request.user.login }}"
