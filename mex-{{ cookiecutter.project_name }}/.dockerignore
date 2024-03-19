@@ -126,8 +126,7 @@ dmypy.json
 .pydocstyle
 Makefile
 mex.bat
-pdm.lock
-poetry.lock
+*.lock
 poetry.toml
 pytest.ini
 requirements.txt
