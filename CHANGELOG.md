@@ -14,7 +14,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Changes
 
 - improve prompt for project name
-- prepare switch from poetry to pdm
+- switch from poetry to pdm
 
 ### Deprecated
 
