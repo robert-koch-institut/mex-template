@@ -15,6 +15,7 @@ optional-dependencies.dev = [
     "pytest>=8.1.1",
     "pytest-cov>=4.1.0",
     "pytest-random-order>=1.1.1",
+    "pytest-xdist>=3.5.0",
     "ruff>=0.3.2",
     "sphinx>=7.2.6",
 ]
