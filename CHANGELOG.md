@@ -24,8 +24,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - fix finding of rejected cruft files
 - fix dependabot pr review assignment
+- add missing pytest-xdist dependency
+- fix linting issue in `docs/conf.py`
 
 ### Security
+
+- fix trivy cve scan to work with pdm
 
 ## [0.1.0] - 2024-03-11
 
