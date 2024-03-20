@@ -54,10 +54,10 @@ run: image
 
 start: image
 	# start the service using docker compose
-	@ echo running docker-compose with mex-{{ cookiecutter.project_name }}:${LATEST}; \
+	@ echo start mex-{{ cookiecutter.project_name }}:${LATEST} with compose; \
 	export DOCKER_BUILDKIT=1; \
 	export COMPOSE_DOCKER_CLI_BUILD=1; \
-	docker compose up; \
+	docker compose up --remove-orphans; \
 
 docs:
 	# use sphinx to auto-generate html docs from code
