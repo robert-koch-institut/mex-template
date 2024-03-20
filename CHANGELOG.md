@@ -24,6 +24,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - fix finding of rejected cruft files
 - fix dependabot pr review assignment
+- add missing pytest-xdist dependency
 
 ### Security
 
