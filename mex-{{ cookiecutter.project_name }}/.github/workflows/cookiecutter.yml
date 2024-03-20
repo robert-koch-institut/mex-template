@@ -63,7 +63,7 @@ jobs:
 
       - name: Update template
         env:
-          {% raw %}GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}{% endraw %}
+          {% raw %}GH_TOKEN: ${{ secrets.WORKFLOW_TOKEN }}{% endraw %}
         run: |
           {% raw -%}
           if cruft check; then
