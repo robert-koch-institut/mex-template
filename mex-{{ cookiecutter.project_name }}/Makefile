@@ -8,7 +8,7 @@ PWD = $(shell pwd)
 setup:
 	# install meta requirements system-wide
 	@ echo installing requirements; \
-	python -m pip --quiet --disable-pip-version-check install --force-reinstall -r requirements.txt; \
+	pip --disable-pip-version-check install --force-reinstall -r requirements.txt; \
 
 hooks:
 	# install pre-commit hooks when not in CI
