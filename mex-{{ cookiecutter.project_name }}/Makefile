@@ -1,4 +1,4 @@
-.PHONY: all test setup hooks install linter pytest wheel container run start docs
+.PHONY: all test setup hooks install linter pytest wheel image run start docs
 all: install test
 test: linter pytest
 
@@ -36,7 +36,7 @@ wheel:
 	@ echo building wheel; \
 	pdm build --no-sdist; \
 
-container:
+image:
 	# build the docker image
 	@ echo building docker image mex-{{ cookiecutter.project_name }}:${LATEST}; \
 	export DOCKER_BUILDKIT=1; \
@@ -44,7 +44,7 @@ container:
 		--tag rki/mex-{{ cookiecutter.project_name }}:${LATEST} \
 		--tag rki/mex-{{ cookiecutter.project_name }}:latest .; \
 
-run: container
+run: image
 	# run the service as a docker container
 	@ echo running docker container mex-{{ cookiecutter.project_name }}:${LATEST}; \
 	docker run \
@@ -52,12 +52,12 @@ run: container
 		--publish 8081:8081 \
 		rki/mex-{{ cookiecutter.project_name }}:${LATEST}; \
 
-start: container
-	# start the service using docker-compose
+start: image
+	# start the service using docker compose
 	@ echo running docker-compose with mex-{{ cookiecutter.project_name }}:${LATEST}; \
 	export DOCKER_BUILDKIT=1; \
 	export COMPOSE_DOCKER_CLI_BUILD=1; \
-	docker-compose up; \
+	docker compose up; \
 
 docs:
 	# use sphinx to auto-generate html docs from code
