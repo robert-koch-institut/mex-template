@@ -1,13 +1,14 @@
-.PHONY: all test setup hooks install linter pytest wheel container run start docs
+.PHONY: all test setup hooks install linter pytest wheel image run start docs
 all: install test
 test: linter pytest
 
 LATEST = $(shell git describe --tags $(shell git rev-list --tags --max-count=1))
+PWD = $(shell pwd)
 
 setup:
 	# install meta requirements system-wide
 	@ echo installing requirements; \
-	python -m pip --quiet --disable-pip-version-check install --force-reinstall -r requirements.txt; \
+	pip --disable-pip-version-check install --force-reinstall -r requirements.txt; \
 
 hooks:
 	# install pre-commit hooks when not in CI
@@ -18,7 +19,7 @@ hooks:
 install: setup hooks
 	# install packages from lock file in local virtual environment
 	@ echo installing package; \
-	pdm sync --clean --group dev; \
+	pdm install -G :all; \
 
 linter:
 	# run the linter hooks from pre-commit on all files
@@ -35,7 +36,7 @@ wheel:
 	@ echo building wheel; \
 	pdm build --no-sdist; \
 
-container:
+image:
 	# build the docker image
 	@ echo building docker image mex-{{ cookiecutter.project_name }}:${LATEST}; \
 	export DOCKER_BUILDKIT=1; \
@@ -43,7 +44,7 @@ container:
 		--tag rki/mex-{{ cookiecutter.project_name }}:${LATEST} \
 		--tag rki/mex-{{ cookiecutter.project_name }}:latest .; \
 
-run: container
+run: image
 	# run the service as a docker container
 	@ echo running docker container mex-{{ cookiecutter.project_name }}:${LATEST}; \
 	docker run \
@@ -51,12 +52,12 @@ run: container
 		--publish 8081:8081 \
 		rki/mex-{{ cookiecutter.project_name }}:${LATEST}; \
 
-start: container
-	# start the service using docker-compose
-	@ echo running docker-compose with mex-{{ cookiecutter.project_name }}:${LATEST}; \
+start: image
+	# start the service using docker compose
+	@ echo start mex-{{ cookiecutter.project_name }}:${LATEST} with compose; \
 	export DOCKER_BUILDKIT=1; \
 	export COMPOSE_DOCKER_CLI_BUILD=1; \
-	docker-compose up; \
+	docker compose up --remove-orphans; \
 
 docs:
 	# use sphinx to auto-generate html docs from code
