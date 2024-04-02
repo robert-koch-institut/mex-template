@@ -15,7 +15,13 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - improve prompt for project name
 - switch from poetry to pdm
-- switch order of black and ruff linter, as ruff often complains about issues, that are automatically fixed by black
+- switch order of black and ruff linter, as ruff often complains about issues,
+  that are automatically fixed by black
+- add tests and ruff cache to dockerignore
+- use `WORKFLOW_TOKEN` in cookiecutter job for consistency
+- switch json linting to 4-spaces and utf-8
+- improve mex.bat and makefile
+- update pdm, ruff and pre-commit
 
 ### Deprecated
 
