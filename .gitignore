@@ -101,6 +101,10 @@ dmypy.json
 # ruff
 .ruff_cache
 
+# cruft
+.cruft-pr-body
+*.rej
+
 # PyCharm
 .idea/
 .idea_modules/
