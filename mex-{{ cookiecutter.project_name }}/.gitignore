@@ -116,3 +116,6 @@ dmypy.json
 
 # SQLite databases
 *.db
+
+# Default exports
+data/
