@@ -2,6 +2,8 @@
 
 Cookiecutter template for MEx python projects.
 
+[![open-code](https://github.com/robert-koch-institut/mex-template/actions/workflows/open-code.yml/badge.svg)](https://gitlab.opencode.de/robert-koch-institut/mex/mex-template)
+
 ## project
 
 The Metadata Exchange (MEx) project is committed to improve the retrieval of RKI

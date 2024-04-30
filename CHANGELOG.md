@@ -9,16 +9,42 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
+### Changes
+
+### Deprecated
+
+### Removed
+
+### Fixed
+
+### Security
+
+## [0.2.0] - 2024-04-30
+
+### Added
+
 - add review assignment to mex-template itself
+- add code of conduct file to mex-template itself
+- add badges for open-code and cookiecutter
+- add renovate config and github action
 
 ### Changes
 
 - improve prompt for project name
 - switch from poetry to pdm
-
-### Deprecated
+- switch order of black and ruff linter, as ruff often complains about issues,
+  that are automatically fixed by black
+- add tests and ruff cache to dockerignore
+- use `WORKFLOW_TOKEN` in cookiecutter job for consistency
+- switch json linting to 4-spaces and utf-8
+- clean up and expand pdm scripts
+- improve and simplify mex.bat and makefile
+- update pdm, ruff and pre-commit
+- switch version specifiers to exact matches for renovatebot
 
 ### Removed
+
+- delete dependabot config
 
 ### Fixed
 
