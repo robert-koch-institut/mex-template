@@ -10,6 +10,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Added
 
 - add code of conduct file to mex-template itself
+- configure renovatebot for mex-template itself
 - add badges for open-code and cookiecutter
 
 ### Changes
