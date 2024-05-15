@@ -9,13 +9,20 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
+- configure renovatebot for mex-template itself
+
 ### Changes
+
+- harmonize git and docker ignore files
+- update requirements, actions and sample dependencies
 
 ### Deprecated
 
 ### Removed
 
 ### Fixed
+
+- fix `export-all` pdm script
 
 ### Security
 

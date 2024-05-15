@@ -112,6 +112,13 @@ dmypy.json
 # SQLite databases
 *.db
 
+# Default exports
+*.ndjson
+data/
+identity.csv
+schema.json
+work/
+
 # Docker specifics
 **/.dockerignore
 **/.git

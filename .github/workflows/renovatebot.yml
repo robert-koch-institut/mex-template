@@ -21,8 +21,8 @@ jobs:
       - name: Run renovatebot
         uses: renovatebot/github-action@v40.1.11
         env:
-          RENOVATE_GIT_PRIVATE_KEY: {% raw %}${{ secrets.GPG_SIGNING_KEY }}{% endraw %}
-          RENOVATE_REPOSITORIES: "robert-koch-institut/mex-{{ cookiecutter.project_name }}"
+          RENOVATE_GIT_PRIVATE_KEY: ${{ secrets.GPG_SIGNING_KEY }}
+          RENOVATE_REPOSITORIES: "robert-koch-institut/mex-template"
         with:
           configurationFile: renovate.json
-          token: {% raw %}${{ secrets.WORKFLOW_TOKEN }}{% endraw %}
+          token: ${{ secrets.WORKFLOW_TOKEN }}
