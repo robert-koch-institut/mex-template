@@ -1,6 +1,6 @@
 name: Release
 
-run-name: release version ${{ inputs.version }} by @${{ github.actor }}
+run-name: release version {% raw %}${{ inputs.version }} by @${{ github.actor }}{% endraw %}
 
 on:
   workflow_dispatch:
@@ -38,9 +38,9 @@ jobs:
           cache-name: cache-requirements
         with:
           path: ~/.cache/pip
-          key: ${{ env.cache-name }}-${{ hashFiles('requirements.txt') }}
+          {% raw %}key: ${{ env.cache-name }}-${{ hashFiles('requirements.txt') }}{% endraw %}
           restore-keys: |
-            ${{ env.cache-name }}-
+            {% raw %}${{ env.cache-name }}-{% endraw %}
 
       - name: Setup python
         uses: actions/setup-python@v5
@@ -54,4 +54,4 @@ jobs:
         run: |
           git config --global user.name 'RKIMetadataExchange'
           git config --global user.email 'mex@rki.de'
-          pdm release ${{ inputs.version }}
+          pdm release {% raw %}${{ inputs.version }}{% endraw %}
