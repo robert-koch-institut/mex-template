@@ -76,10 +76,8 @@ components of the MEx project are open-sourced under the same license as well.
 
 ### creating release
 
-- update version in `pyproject.toml` and `CHANGELOG.md`
-- commit update `git commit --message "..."`
-- create a tag `git tag ...`
-- push `git push --follow-tags`
+- run `pdm release VERSION` to release a new version where VERSION matches the regular
+ expression: `\d{1,4}\.\d{1,4}\.\d{1,4}`.
 
 ### container workflow
 
