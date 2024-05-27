@@ -7,7 +7,12 @@ on:
     branches: ["main"]
     inputs:
       version:
-        description: 'New version number'
+        type: choice
+        description: 'part of the project version to update'
+        options:
+        - major
+        - minor
+        - patch
         required: true
 
 env:
