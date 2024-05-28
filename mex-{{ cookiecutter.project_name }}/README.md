@@ -76,8 +76,8 @@ components of the MEx project are open-sourced under the same license as well.
 
 ### creating release
 
-- run `pdm release VERSION` to release a new version where VERSION matches the regular
- expression: `\d{1,4}\.\d{1,4}\.\d{1,4}`.
+- run `pdm release RULE` to release a new version where RULE determines which part of 
+the version to update and is one of `major`, `minor`, `patch`.
 
 ### container workflow
 
