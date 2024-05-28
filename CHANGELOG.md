@@ -10,6 +10,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Added
 
 - configure renovatebot for mex-template itself
+- pdm release plugin as additional requirement for template packages
+- github action for releasing a new version in template packages
 
 ### Changes
 

@@ -1,0 +1,62 @@
+name: Release
+
+run-name: release version {% raw %}${{ inputs.version }} by @${{ github.actor }}{% endraw %}
+
+on:
+  workflow_dispatch:
+    branches: ["main"]
+    inputs:
+      version:
+        type: choice
+        description: 'part of the project version to update'
+        options:
+        - major
+        - minor
+        - patch
+        required: true
+
+env:
+  PIP_NO_OPTION: on
+  PIP_NO_CLEAN: on
+  PIP_PREFER_BINARY: on
+
+permissions:
+  contents: write
+
+concurrency:
+  group: "release"
+  cancel-in-progress: false
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 1
+
+      - name: Cache requirements
+        uses: actions/cache@v4
+        env:
+          cache-name: cache-requirements
+        with:
+          path: ~/.cache/pip
+          {% raw %}key: ${{ env.cache-name }}-${{ hashFiles('requirements.txt') }}{% endraw %}
+          restore-keys: |
+            {% raw %}${{ env.cache-name }}-{% endraw %}
+
+      - name: Setup python
+        uses: actions/setup-python@v5
+        with:
+          python-version: 3.11
+
+      - name: Install requirements
+        run: make setup
+
+      - name: Release new version
+        run: |
+          git config --global user.name 'RKIMetadataExchange'
+          git config --global user.email 'mex@rki.de'
+          pdm release {% raw %}${{ inputs.version }}{% endraw %}
