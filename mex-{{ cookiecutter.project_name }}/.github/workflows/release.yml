@@ -4,7 +4,6 @@ run-name: bump {% raw %}${{ inputs.version }} version by @${{ github.actor }}{% 
 
 on:
   workflow_dispatch:
-    branches: ["main"]
     inputs:
       version:
         type: choice
