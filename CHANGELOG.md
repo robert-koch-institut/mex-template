@@ -19,6 +19,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - harmonize git and docker ignore files
 - update requirements, actions and sample dependencies
+- set fixed versions in toml for renovatebot
 
 ### Deprecated
 
