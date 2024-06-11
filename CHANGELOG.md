@@ -30,7 +30,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Fixed
 
-- fix `export-all` pdm script
+- fix `export-all` and `install-all` pdm scripts
 - fix wording of release pipeline title
 
 ### Security
