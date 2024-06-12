@@ -30,6 +30,8 @@ jobs:
   release:
     runs-on: ubuntu-latest
     timeout-minutes: 10
+    outputs:
+      tag: ${{ steps.release.outputs.tag }}
     steps:
       - name: Checkout repo
         uses: actions/checkout@v4
@@ -78,3 +80,14 @@ jobs:
           {% raw %}GH_TOKEN: ${{ secrets.WORKFLOW_TOKEN }}{% endraw %}
         run: |
           pdm release {% raw %}${{ inputs.version }}{% endraw %}
+          echo "tag=$(git describe --abbrev=0 --tags)" >> "$GITHUB_OUTPUT"
+
+  container:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    needs: release
+    steps:
+      - name: Build, tag and push container to ghcr
+        uses: GlueOps/github-actions-build-push-containers@v0.4.2
+        with:
+          {% raw %}tags: "${{ github.sha }},${{ needs.release.outputs.tag }},latest"{% endraw %}
