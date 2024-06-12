@@ -12,19 +12,26 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - configure renovatebot for mex-template itself
 - pdm release plugin as additional requirement for template packages
 - github action for releasing a new version in template packages
+- add `.web` folder to ignore files for reflex development
+- add commit signing to release pipeline
 
 ### Changes
 
 - harmonize git and docker ignore files
 - update requirements, actions and sample dependencies
+- set fixed versions in toml for renovatebot
 
 ### Deprecated
 
 ### Removed
 
+- drop npm support from renovate pipeline
+- remove non-functional branch restriction from release pipeline
+
 ### Fixed
 
-- fix `export-all` pdm script
+- fix `export-all` and `install-all` pdm scripts
+- fix wording of release pipeline title
 
 ### Security
 
