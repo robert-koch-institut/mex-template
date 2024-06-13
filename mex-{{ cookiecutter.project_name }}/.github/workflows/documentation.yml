@@ -18,7 +18,7 @@ permissions:
   id-token: write
 
 concurrency:
-  group: "pages"
+  group: {% raw %}${{ github.workflow }}-${{ github.ref }}{% endraw %}
   cancel-in-progress: false
 
 jobs:

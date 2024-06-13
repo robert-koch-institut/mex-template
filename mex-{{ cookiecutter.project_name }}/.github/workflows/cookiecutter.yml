@@ -8,6 +8,10 @@ on:
     - cron: '0 0 * * *'
   workflow_dispatch:
 
+concurrency:
+  group: {% raw %}${{ github.workflow }}-${{ github.ref }}{% endraw %}
+  cancel-in-progress: true
+
 env:
   PIP_NO_OPTION: on
   PIP_NO_CLEAN: on
