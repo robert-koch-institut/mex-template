@@ -5,11 +5,11 @@ on:
     branches: ["main"]
     tags: ["**"]
   schedule:
-    - cron: '0 0 * * *'
+    - cron: "14 3 * * 1-5"
   workflow_dispatch:
 
 concurrency:
-  group: {% raw %}${{ github.workflow }}-${{ github.ref }}{% endraw %}
+  group: {% raw %}${{ github.workflow }}{% endraw %}
   cancel-in-progress: true
 
 env:

@@ -18,7 +18,7 @@ permissions:
   id-token: write
 
 concurrency:
-  group: {% raw %}${{ github.workflow }}-${{ github.ref }}{% endraw %}
+  group: {% raw %}${{ github.workflow }}{% endraw %}
   cancel-in-progress: false
 
 jobs:
