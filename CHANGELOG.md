@@ -9,6 +9,20 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
+### Changes
+
+### Deprecated
+
+### Removed
+
+### Fixed
+
+### Security
+
+## [0.3.0] - 2024-06-14
+
+### Added
+
 - configure renovatebot for mex-template itself
 - pdm release plugin as additional requirement for template packages
 - github action for releasing a new version in template packages
@@ -28,8 +42,6 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - trigger documentation on release pipeline instead of pushed tag
 - harmonize cron schedules
 
-### Deprecated
-
 ### Removed
 
 - drop npm support from renovate pipeline
@@ -42,8 +54,6 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - fix `export-all` and `install-all` pdm scripts
 - fix wording of release pipeline title
 - fix tagging and pushing docker containers to ghcr.io
-
-### Security
 
 ## [0.2.0] - 2024-04-30
 
