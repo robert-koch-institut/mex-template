@@ -1,5 +1,8 @@
 # PR Context
-<!-- Additional info for the reviewer -->
+<!-- Additional info for the reviewer
+
+Don't forget to explain how you tested the changes, i.e. by providing a link
+to a fork or sample repository where the changes were tried out. -->
 
 # Added
 <!-- New features and interfaces -->

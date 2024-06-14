@@ -14,12 +14,18 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - github action for releasing a new version in template packages
 - add `.web` folder to ignore files for reflex development
 - add commit signing to release pipeline
+- add more metadata labels to docker file
+- add hint to PR template to explain testing for template changes
+- configure sensible concurrency rules for all workflows
+- add distribution upload step to release pipeline
 
 ### Changes
 
 - harmonize git and docker ignore files
 - update requirements, actions and sample dependencies
 - set fixed versions in toml for renovatebot
+- trigger documentation on release pipeline instead of pushed tag
+- harmonize cron schedules
 
 ### Deprecated
 
@@ -27,11 +33,14 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - drop npm support from renovate pipeline
 - remove non-functional branch restriction from release pipeline
+- remove docker workflow and move into release pipeline
+- remove stale dependabot cve-scan config
 
 ### Fixed
 
 - fix `export-all` and `install-all` pdm scripts
 - fix wording of release pipeline title
+- fix tagging and pushing docker containers to ghcr.io
 
 ### Security
 

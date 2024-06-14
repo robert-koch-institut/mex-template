@@ -6,6 +6,10 @@ on:
       - opened
       - reopened
 
+concurrency:
+  group: {% raw %}${{ github.workflow }}-${{ github.ref }}{% endraw %}
+  cancel-in-progress: true
+
 jobs:
   assignee:
     runs-on: ubuntu-latest
