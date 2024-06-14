@@ -62,7 +62,6 @@ jobs:
           SIGNING_KEY: ${{ secrets.SIGNING_KEY }}
           SIGNING_PUB: ${{ secrets.SIGNING_PUB }}
         run: |
-          {% raw -%}
           eval "$(ssh-agent -s)"
           install --directory ~/.ssh --mode 700
           base64 -d <<< '${{ secrets.SIGNING_KEY }}' > ~/.ssh/mex
@@ -74,7 +73,6 @@ jobs:
           git config --local gpg.format ssh
           git config --local user.signingkey ~/.ssh/mex.pub
           git config --local commit.gpgsign true
-          {%- endraw %}
 
       - name: Release new version
         id: release
