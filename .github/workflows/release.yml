@@ -1,6 +1,6 @@
 name: Release
 
-run-name: bump {% raw %}${{ inputs.version }} version by @${{ github.actor }}{% endraw %}
+run-name: bump ${{ inputs.version }} version by @${{ github.actor }}
 
 on:
   workflow_dispatch:
@@ -24,7 +24,7 @@ permissions:
   packages: write
 
 concurrency:
-  group: {% raw %}${{ github.workflow }}-${{ github.ref }}{% endraw %}
+  group: ${{ github.workflow }}-${{ github.ref }}
   cancel-in-progress: false
 
 jobs:
@@ -32,7 +32,7 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 10
     outputs:
-      tag: {% raw %}${{ steps.release.outputs.tag }}{% endraw %}
+      tag: ${{ steps.release.outputs.tag }}
     steps:
       - name: Checkout repo
         uses: actions/checkout@v4
@@ -45,9 +45,9 @@ jobs:
           cache-name: cache-requirements
         with:
           path: ~/.cache/pip
-          {% raw %}key: ${{ env.cache-name }}-${{ hashFiles('requirements.txt') }}{% endraw %}
+          key: ${{ env.cache-name }}-${{ hashFiles('requirements.txt') }}
           restore-keys: |
-            {% raw %}${{ env.cache-name }}-{% endraw %}
+            ${{ env.cache-name }}-
 
       - name: Setup python
         uses: actions/setup-python@v5
@@ -59,8 +59,8 @@ jobs:
 
       - name: Configure git
         env:
-          {% raw %}SIGNING_KEY: ${{ secrets.SIGNING_KEY }}{% endraw %}
-          {% raw %}SIGNING_PUB: ${{ secrets.SIGNING_PUB }}{% endraw %}
+          SIGNING_KEY: ${{ secrets.SIGNING_KEY }}
+          SIGNING_PUB: ${{ secrets.SIGNING_PUB }}
         run: |
           {% raw -%}
           eval "$(ssh-agent -s)"
@@ -79,20 +79,10 @@ jobs:
       - name: Release new version
         id: release
         env:
-          {% raw %}GH_TOKEN: ${{ secrets.WORKFLOW_TOKEN }}{% endraw %}
+          GH_TOKEN: ${{ secrets.WORKFLOW_TOKEN }}
         run: |
-          pdm release {% raw %}${{ inputs.version }}{% endraw %}
+          pdm release ${{ inputs.version }}
           echo "tag=$(git describe --abbrev=0 --tags)" >> "$GITHUB_OUTPUT"
-
-  containerize:
-    runs-on: ubuntu-latest
-    timeout-minutes: 10
-    needs: release
-    steps:
-      - name: Build, tag and push docker image to ghcr
-        uses: GlueOps/github-actions-build-push-containers@v0.4.2
-        with:
-          {% raw %}tags: "${{ github.sha }},${{ needs.release.outputs.tag }},latest"{% endraw %}
 
   distribute:
     runs-on: ubuntu-latest
@@ -110,9 +100,9 @@ jobs:
           cache-name: cache-requirements
         with:
           path: ~/.cache/pip
-          {% raw %}key: ${{ env.cache-name }}-${{ hashFiles('requirements.txt') }}{% endraw %}
+          key: ${{ env.cache-name }}-${{ hashFiles('requirements.txt') }}
           restore-keys: |
-            {% raw %}${{ env.cache-name }}-{% endraw %}
+            ${{ env.cache-name }}-
 
       - name: Setup python
         uses: actions/setup-python@v5
@@ -124,13 +114,7 @@ jobs:
 
       - name: Build wheel and sdist distros and create a github release
         env:
-          {% raw %}GH_TOKEN: ${{ secrets.WORKFLOW_TOKEN }}{% endraw %}
+          GH_TOKEN: ${{ secrets.WORKFLOW_TOKEN }}
           PDM_CHECK_UPDATE: False
         run: |
-          {% raw -%}
           gh release create ${{ needs.release.outputs.tag }} --generate-notes --latest --verify-tag
-          pdm build --dest dist
-          for filename in dist/*; do
-            gh release upload ${{ needs.release.outputs.tag }} ${filename};
-          done
-          {%- endraw %}

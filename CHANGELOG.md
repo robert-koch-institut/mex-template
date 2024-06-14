@@ -18,6 +18,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - add hint to PR template to explain testing for template changes
 - configure sensible concurrency rules for all workflows
 - add distribution upload step to release pipeline
+- add release and cve pipelines to mex-template itself
 
 ### Changes
 
