@@ -113,6 +113,7 @@ jobs:
           {% raw %}key: ${{ env.cache-name }}-${{ hashFiles('requirements.txt') }}{% endraw %}
           restore-keys: |
             {% raw %}${{ env.cache-name }}-{% endraw %}
+
       - name: Setup python
         uses: actions/setup-python@v5
         with:
@@ -127,8 +128,8 @@ jobs:
           PDM_CHECK_UPDATE: False
         run: |
           {% raw -%}
-          pdm build --dest dist
           gh release create ${{ needs.release.outputs.tag }} --generate-notes --latest --verify-tag
+          pdm build --dest dist
           for filename in dist/*; do
             gh release upload ${{ needs.release.outputs.tag }} ${filename};
           done
