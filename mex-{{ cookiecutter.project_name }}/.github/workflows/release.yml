@@ -92,7 +92,7 @@ jobs:
       - name: Build, tag and push docker image to ghcr
         uses: GlueOps/github-actions-build-push-containers@v0.4.2
         with:
-          tags: "${{ github.sha }},${{ needs.release.outputs.tag }},latest"
+          {% raw %}tags: "${{ github.sha }},${{ needs.release.outputs.tag }},latest"{% endraw %}
 
   distribute:
     runs-on: ubuntu-latest
@@ -110,9 +110,9 @@ jobs:
           cache-name: cache-requirements
         with:
           path: ~/.cache/pip
-          key: ${{ env.cache-name }}-${{ hashFiles('requirements.txt') }}
+          {% raw %}key: ${{ env.cache-name }}-${{ hashFiles('requirements.txt') }}{% endraw %}
           restore-keys: |
-            ${{ env.cache-name }}-
+            {% raw %}${{ env.cache-name }}-{% endraw %}
       - name: Setup python
         uses: actions/setup-python@v5
         with:
@@ -123,11 +123,13 @@ jobs:
 
       - name: Build wheel and sdist distros and create a github release
         env:
-          GH_TOKEN: ${{ github.token }}
+          {% raw %}GH_TOKEN: ${{ secrets.WORKFLOW_TOKEN }}{% endraw %}
           PDM_CHECK_UPDATE: False
         run: |
+          {% raw -%}
           pdm build --dest dist
           gh release create ${{ needs.release.outputs.tag }} --generate-notes --latest --verify-tag
           for filename in dist/*; do
             gh release upload ${{ needs.release.outputs.tag }} ${filename};
           done
+          {%- endraw %}
