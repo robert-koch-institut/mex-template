@@ -11,11 +11,16 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Changes
 
+- use new --frozen-lockfile instead of deprecated --no-lock
+- update ruff
+
 ### Deprecated
 
 ### Removed
 
 ### Fixed
+
+- remove --no-editable flag to avoid installing local package into venv
 
 ### Security
 
