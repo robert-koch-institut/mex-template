@@ -27,6 +27,10 @@ find research data from the RKI.
 For further details, please consult our
 [project page](https://www.rki.de/DE/Content/Forsch/MEx/MEx_node.html).
 
+[^1]: FAIR is referencing the so-called
+[FAIR data principles](https://www.go-fair.org/fair-principles/) – guidelines to make
+data Findable, Accessible, Interoperable and Reusable.
+
 **Contact** \
 For more information, please feel free to email us at [mex@rki.de](mailto:mex@rki.de).
 
@@ -35,10 +39,6 @@ For more information, please feel free to email us at [mex@rki.de](mailto:mex@rk
 Nordufer 20 \
 13353 Berlin \
 Germany
-
-[^1]: FAIR is referencing the so-called
-[FAIR data principles](https://www.go-fair.org/fair-principles/) – guidelines to make
-data Findable, Accessible, Interoperable and Reusable.
 
 ## package
 
