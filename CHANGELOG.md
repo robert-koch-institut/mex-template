@@ -9,14 +9,19 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
+- configure ruff formatting and pre-commit hook
+- added RKI postal address to README files
+
 ### Changes
 
 - use new --frozen-lockfile instead of deprecated --no-lock
-- update ruff
+- update ruff and mypy versions
 
 ### Deprecated
 
 ### Removed
+
+- remove black dependency and pre-commit hook
 
 ### Fixed
 
