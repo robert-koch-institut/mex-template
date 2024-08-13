@@ -15,7 +15,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Changes
 
 - use new --frozen-lockfile instead of deprecated --no-lock
-- update ruff and mypy versions
+- update project requirements, github actions and dependencies
+- prevent duplicate github pipelines for test, cve and lint
 
 ### Deprecated
 
