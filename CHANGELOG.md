@@ -17,6 +17,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - use new --frozen-lockfile instead of deprecated --no-lock
 - update project requirements, github actions and dependencies
 - prevent duplicate github pipelines for test, cve and lint
+- build and push containers without glueops
+- loosen dependencies in pyproject.toml
 
 ### Deprecated
 
