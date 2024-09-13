@@ -125,9 +125,9 @@ jobs:
 
       - name: 'Build Inventory Image'
         run: |
-          docker build . 
-          --tag ghcr.io/robert-koch-institut/mex-{{ cookiecutter.project_name }}:latest
-          --tag ghcr.io/robert-koch-institut/mex-{{ cookiecutter.project_name }}:{% raw %}${{ github.sha }}{% endraw %}
+          docker build . \
+          --tag ghcr.io/robert-koch-institut/mex-{{ cookiecutter.project_name }}:latest \
+          --tag ghcr.io/robert-koch-institut/mex-{{ cookiecutter.project_name }}:{% raw %}${{ github.sha }}{% endraw %} \
           --tag ghcr.io/robert-koch-institut/mex-{{ cookiecutter.project_name }}:{% raw %}${{ needs.release.outputs.tag }}{% endraw %}
           docker push ghcr.io/robert-koch-institut/mex-{{ cookiecutter.project_name }}:latest
 
