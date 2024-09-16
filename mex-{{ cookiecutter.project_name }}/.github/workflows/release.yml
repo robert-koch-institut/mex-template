@@ -129,7 +129,7 @@ jobs:
           --tag ghcr.io/robert-koch-institut/mex-{{ cookiecutter.project_name }}:latest \
           --tag ghcr.io/robert-koch-institut/mex-{{ cookiecutter.project_name }}:{% raw %}${{ github.sha }}{% endraw %} \
           --tag ghcr.io/robert-koch-institut/mex-{{ cookiecutter.project_name }}:{% raw %}${{ needs.release.outputs.tag }}{% endraw %}
-          docker push --all-tags ghcr.io/robert-koch-institut/mex-{{ cookiecutter.project_name }}:latest
+          docker push --all-tags ghcr.io/robert-koch-institut/mex-{{ cookiecutter.project_name }}
 
   distribute:
     runs-on: ubuntu-latest
