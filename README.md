@@ -4,7 +4,7 @@ Cookiecutter template for MEx python projects.
 
 [![open-code](https://github.com/robert-koch-institut/mex-template/actions/workflows/open-code.yml/badge.svg)](https://gitlab.opencode.de/robert-koch-institut/mex/mex-template)
 
-## project
+## Project
 
 The Metadata Exchange (MEx) project is committed to improve the retrieval of RKI
 research data and projects. How? By focusing on metadata: instead of providing the
@@ -34,26 +34,27 @@ data Findable, Accessible, Interoperable and Reusable.
 **Contact** \
 For more information, please feel free to email us at [mex@rki.de](mailto:mex@rki.de).
 
-### Publisher of this document
+### Publisher
+
 **Robert Koch-Institut** \
 Nordufer 20 \
 13353 Berlin \
 Germany
 
-## package
+## Package
 
 The `mex-template` is a [cookiecutter](https://www.cookiecutter.io/) template to make
 starting a new python project easier and to keep boilerplate files harmonized using
 [cruft](https://cruft.github.io/cruft/).
 
-## license
+## License
 
 This package is licensed under the [MIT license](/LICENSE). All other software
 components of the MEx project are open-sourced under the same license as well.
 
-## usage
+## Usage
 
-### installation
+### Installation
 
 - on unix, consider using pyenv https://github.com/pyenv/pyenv
   - get pyenv `curl https://pyenv.run | bash`
@@ -66,16 +67,14 @@ components of the MEx project are open-sourced under the same license as well.
   - switch version `pyenv global 3.11`
   - run `pip install cruft`
 
-## usage
-
-### new project
+### Create new
 
 - starting a new project using this template is easy
 - go to your home / code folder
 - run `cruft create https://github.com/robert-koch-institut/mex-template`
 - fill in the prompted values
 
-### update existing
+### Update existing
 
 - there are two tools to help you update the boilerplate of existing projects
 - go to your local checkout of a project using this template
