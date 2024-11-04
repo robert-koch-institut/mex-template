@@ -19,6 +19,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - prevent duplicate github pipelines for test, cve and lint
 - build and push containers without glueops
 - loosen dependencies in pyproject.toml
+- use all ruff linter rules (with some opt-outs)
+- install mex-release from pypi rather than github
+- constrain dev-dependencies only to major/minor versions, to limit renovate noise
+- title-case readme headings for a more professional look
 
 ### Deprecated
 
