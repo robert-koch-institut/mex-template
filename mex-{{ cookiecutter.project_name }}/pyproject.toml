@@ -93,6 +93,7 @@ ignore = [
     "DJ",      # Disable django specific checks (we are not using django)
     "FBT",     # Disable boolean type hint checks (for more flexibility)
     "FIX",     # Allow committing with open TODOs (don't punish committers)
+    "ISC001",  # Disable checks for implicitly concatenated strings (formatter compat)
     "N805",    # Allow first argument of a method to be non-self (pydantic compat)
     "N815",    # Allow mixedCase variables in class scope (model compat)
     "PTH123",  # Allow using builtin open method (simpler than pathlib)
