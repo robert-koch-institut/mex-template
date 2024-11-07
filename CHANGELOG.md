@@ -23,6 +23,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - install mex-release from pypi rather than github
 - constrain dev-dependencies only to major/minor versions, to limit renovate noise
 - title-case readme headings for a more professional look
+- use commit-signing flow from mex-release
 
 ### Deprecated
 
