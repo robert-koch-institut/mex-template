@@ -38,7 +38,10 @@ wheel:
 
 image:
 	# build the docker image
+	@ echo locking pdm requirements into requirements.txt format
+	pdm export --self --output locked-requirements.txt --no-hashes --without dev	
 	@ echo building docker image mex-{{ cookiecutter.project_name }}:${LATEST}; \
+	pdm export --self --output locked-requirements.txt --no-hashes --without dev
 	export DOCKER_BUILDKIT=1; \
 	docker build \
 		--tag rki/mex-{{ cookiecutter.project_name }}:${LATEST} \
