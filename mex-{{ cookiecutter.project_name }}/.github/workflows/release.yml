@@ -15,8 +15,10 @@ on:
         required: true
 
 env:
-  PIP_NO_OPTION: on
+  PDM_CHECK_UPDATE: False
+  PIP_DISABLE_PIP_VERSION_CHECK: on
   PIP_NO_CLEAN: on
+  PIP_NO_INPUT: on
   PIP_PREFER_BINARY: on
 
 permissions:
@@ -155,7 +157,6 @@ jobs:
       - name: Build wheel and sdist distros and create a github release
         env:
           {% raw %}GH_TOKEN: ${{ secrets.WORKFLOW_TOKEN }}{% endraw %}
-          PDM_CHECK_UPDATE: False
         run: |
           {% raw -%}
           gh release create ${{ needs.release.outputs.tag }} --generate-notes --latest --verify-tag
