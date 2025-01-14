@@ -37,6 +37,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Fixed
 
 - remove --no-editable flag to avoid installing local package into venv
+- build correct package versions in release pipeline
 
 ### Security
 
