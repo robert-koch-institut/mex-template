@@ -24,16 +24,20 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - constrain dev-dependencies only to major/minor versions, to limit renovate noise
 - title-case readme headings for a more professional look
 - use commit-signing flow from mex-release
+- optimize pip and pdm environment variables
+- bump year in license files to 2025
 
 ### Deprecated
 
 ### Removed
 
 - remove black dependency and pre-commit hook
+- remove wheel dependency from requirements.txt
 
 ### Fixed
 
 - remove --no-editable flag to avoid installing local package into venv
+- build correct package versions in release pipeline
 
 ### Security
 
