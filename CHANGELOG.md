@@ -26,6 +26,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - use commit-signing flow from mex-release
 - optimize pip and pdm environment variables
 - bump year in license files to 2025
+- use h3 in PR template, so we can more easily copy&paste from CHANGELOGs
 
 ### Deprecated
 
@@ -38,6 +39,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - remove --no-editable flag to avoid installing local package into venv
 - build correct package versions in release pipeline
+- fix PIP_NO_INPUT=on in dockerfile
+- fix project page URL
 
 ### Security
 
