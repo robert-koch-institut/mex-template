@@ -1,23 +1,23 @@
-# PR Context
+### PR Context
 <!-- Additional info for the reviewer
 
 Don't forget to explain how you tested the changes, i.e. by providing a link
 to a fork or sample repository where the changes were tried out. -->
 
-# Added
+### Added
 <!-- New features and interfaces -->
 
-# Changes
+### Changes
 <!-- Changes in existing functionality -->
 
-# Deprecated
+### Deprecated
 <!-- Soon-to-be removed features -->
 
-# Removed
+### Removed
 <!-- Definitely removed features -->
 
-# Fixed
+### Fixed
 <!-- Fixed bugs -->
 
-# Security
+### Security
 <!-- Fixed vulnerabilities -->
