@@ -9,6 +9,20 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
+### Changes
+
+### Deprecated
+
+### Removed
+
+### Fixed
+
+### Security
+
+## [0.4.0] - 2025-02-18
+
+### Added
+
 - configure ruff formatting and pre-commit hook
 - added RKI postal address to README files
 - added reflex specific files to gitignores
@@ -29,8 +43,6 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - bump year in license files to 2025
 - use h3 in PR template, so we can more easily copy&paste from CHANGELOGs
 
-### Deprecated
-
 ### Removed
 
 - remove black dependency and pre-commit hook
@@ -42,8 +54,6 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - build correct package versions in release pipeline
 - fix PIP_NO_INPUT=on in dockerfile
 - fix project page URL
-
-### Security
 
 ## [0.3.0] - 2024-06-14
 
