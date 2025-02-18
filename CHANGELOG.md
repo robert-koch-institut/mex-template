@@ -11,6 +11,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - configure ruff formatting and pre-commit hook
 - added RKI postal address to README files
+- added reflex specific files to gitignores
 
 ### Changes
 
