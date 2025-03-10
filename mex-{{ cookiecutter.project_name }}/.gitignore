@@ -126,10 +126,12 @@ dmypy.json
 assets/external/
 .web
 
-# Default exports
+# MEx specific
+.aws/
 *.ndjson
 data/
 identity.csv
+payload
 schema.json
 tmp*/
 work/
