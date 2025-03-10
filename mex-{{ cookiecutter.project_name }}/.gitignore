@@ -49,7 +49,7 @@ coverage.xml
 test*.jpeg
 test*.png
 *.cover
-*.py,cover
+*,cover
 .hypothesis/
 .pytest_cache/
 cover/
@@ -84,7 +84,7 @@ ipython_config.py
 __pypackages__/
 
 # Celery stuff
-celerybeat-schedule
+celerybeat-schedule.*
 celerybeat.pid
 
 # Environments
@@ -128,9 +128,11 @@ assets/external/
 
 # MEx specific
 .aws/
+.invenio.private
 *.ndjson
 data/
 identity.csv
+logs/
 payload
 schema.json
 tmp*/
