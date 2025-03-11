@@ -1,0 +1,17 @@
+fail_fast: false
+default_language_version:
+  python: python3.11
+repos:
+  - repo: https://github.com/pre-commit/pre-commit-hooks
+    rev: v5.0.0
+    hooks:
+      - id: pretty-format-json
+        name: json
+        args: [--autofix, --indent=4, --no-ensure-ascii]
+        exclude: cookiecutter.json
+      - id: end-of-file-fixer
+        name: eof
+      - id: trailing-whitespace
+        name: whitespaces
+      - id: fix-byte-order-marker
+        name: byte-order
