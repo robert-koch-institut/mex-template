@@ -22,6 +22,7 @@ downloads/
 eggs/
 lib/
 lib64/
+locked-requirements.txt
 MANIFEST
 parts/
 sdist/
