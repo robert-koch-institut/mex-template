@@ -23,6 +23,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Fixed
 
 - fix project page link on documentation pages
+- use proper git tag for building containers in CI
 
 ### Security
 
