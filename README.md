@@ -2,6 +2,9 @@
 
 Cookiecutter template for MEx python projects.
 
+[![cookiecutter](https://github.com/robert-koch-institut/mex-template/actions/workflows/cookiecutter.yml/badge.svg)](https://github.com/robert-koch-institut/mex-template)
+[![cve-scan](https://github.com/robert-koch-institut/mex-template/actions/workflows/cve-scan.yml/badge.svg)](https://github.com/robert-koch-institut/mex-template/actions/workflows/cve-scan.yml)
+[![linting](https://github.com/robert-koch-institut/mex-template/actions/workflows/linting.yml/badge.svg)](https://github.com/robert-koch-institut/mex-template/actions/workflows/linting.yml)
 [![open-code](https://github.com/robert-koch-institut/mex-template/actions/workflows/open-code.yml/badge.svg)](https://gitlab.opencode.de/robert-koch-institut/mex/mex-template)
 
 ## Project
