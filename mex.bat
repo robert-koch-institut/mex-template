@@ -3,6 +3,7 @@
 set target=%1
 
 if "%target%"=="install" goto install
+if "%target%"=="test" goto test
 echo invalid argument %target%
 exit /b 1
 
@@ -12,3 +13,21 @@ exit /b 1
 echo installing requirements
 pip --disable-pip-version-check install --force-reinstall -r requirements.txt
 if %errorlevel% neq 0 exit /b %errorlevel%
+
+@REM install pre-commit hooks when not in CI
+if "%CI%"=="" (
+    pre-commit install
+    if %errorlevel% neq 0 exit /b %errorlevel%
+)
+
+@REM install packages from lock file in local virtual environment
+echo installing package
+pdm install
+exit /b %errorlevel%
+
+
+:test
+@REM run the linter hooks from pre-commit on all files
+echo linting all files
+pre-commit run --all-files
+exit /b %errorlevel%
