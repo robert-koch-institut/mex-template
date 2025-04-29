@@ -9,12 +9,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
-- add pre-commit hooks and linting CI workflow
-
 ### Changes
-
-- update gitignores with `locked-requirements.txt` and invenio-specifics
-- update versions in requirements.txt, pyproject.toml and pre-commit
 
 ### Deprecated
 
@@ -22,10 +17,23 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Fixed
 
+### Security
+
+## [0.5.0] - 2025-04-29
+
+### Added
+
+- add pre-commit hooks and linting CI workflow
+
+### Changes
+
+- update gitignores with `locked-requirements.txt` and invenio-specifics
+- update versions in requirements.txt, pyproject.toml and pre-commit
+
+### Fixed
+
 - fix project page link on documentation pages
 - use proper git tag for building containers in CI
-
-### Security
 
 ## [0.4.0] - 2025-02-18
 
