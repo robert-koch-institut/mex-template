@@ -79,17 +79,17 @@ docstring-code-format = true
 
 [tool.ruff.lint]
 ignore = [
-    "ANN",     # Disable all annotations checks (handled by mypy)
     "COM",     # Disable flake8-commas checks (let ruff format handle that)
     "CPY",     # Disable copyright notice checks (we have LICENSE files)
-    "D100",    # Allow missing module docstring (for brevity and speed)
-    "D104",    # Allow missing package docstring (for brevity and speed)
+    "D100",    # Allow missing module docstring (for brevity)
+    "D104",    # Allow missing package docstring (for brevity)
     "D203",    # Disallow blank line before class docstring (inverse of D211)
     "D213",    # Disallow multi-line docstring starting at second line (inverse of D212)
     "D406",    # Allow section name ending with newline (google style compat)
     "D407",    # Allow missing dashed underline after section (google style compat)
     "D413",    # Allow missing blank line after last section (google style compat)
     "FIX",     # Allow committing with open TODOs (don't punish committers)
+    "ISC001",  # Disable checks for implicitly concatenated strings (formatter compat)
     "N805",    # Allow first argument of a method to be non-self (pydantic compat)
     "N815",    # Allow mixedCase variables in class scope (model compat)
     "RUF012",  # Allow mutable class attributes (pydantic compat)
