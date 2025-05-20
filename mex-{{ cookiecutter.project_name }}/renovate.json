@@ -15,6 +15,17 @@
     },
     "packageRules": [
         {
+            "matchPackageNames": ["mex-*"],
+            "matchUpdateTypes": [
+                "digest",
+                "lockFileMaintenance",
+                "major",
+                "minor",
+                "patch",
+                "pin"
+            ]
+        },
+        {
             "matchUpdateTypes": [
                 "digest",
                 "lockFileMaintenance",
