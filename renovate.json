@@ -15,9 +15,7 @@
     },
     "packageRules": [
         {
-            "matchPackageNames": [
-                "mex-*"
-            ],
+            "matchPackageNames": ["mex-*"],
             "matchUpdateTypes": [
                 "digest",
                 "lockFileMaintenance",
