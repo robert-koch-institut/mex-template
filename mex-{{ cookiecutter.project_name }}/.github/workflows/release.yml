@@ -132,11 +132,6 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 10
     needs: release
-    environment:
-      name: pypi
-      url: https://pypi.org/p/{{ cookiecutter.project_name }}
-    permissions:
-      id-token: write  # IMPORTANT: mandatory for trusted publishing
     steps:
       - name: Checkout repo
         uses: actions/checkout@v4
@@ -173,6 +168,3 @@ jobs:
             gh release upload ${{ needs.release.outputs.tag }} ${filename};
           done
           {%- endraw %}
-
-      - name: Publish distribution 📦 to PyPI
-        uses: pypa/gh-action-pypi-publish@release/v1
