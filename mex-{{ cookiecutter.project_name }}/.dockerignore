@@ -118,6 +118,7 @@ dmypy.json
 
 # MEx specific
 .aws/
+.cruft.json
 .invenio.private
 .states
 .web
@@ -127,6 +128,7 @@ data/
 identity.csv
 logs/
 payload
+renovate.json
 schema.json
 storage/
 tmp*/
