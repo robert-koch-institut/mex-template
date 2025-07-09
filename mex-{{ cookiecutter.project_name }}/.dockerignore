@@ -12,7 +12,6 @@ __pycache__/
 .pdm-build
 .pdm-python
 .Python
-.web/
 *.egg
 *.egg-info/
 build/
