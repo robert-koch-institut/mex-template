@@ -41,6 +41,7 @@ jobs:
         uses: actions/checkout@v4
         with:
           fetch-depth: 1
+          token: {% raw %}${{ secrets.WORKFLOW_TOKEN }}{% endraw %}
 
       - name: Cache requirements
         uses: actions/cache@v4
@@ -74,8 +75,6 @@ jobs:
 
       - name: Release new version
         id: release
-        env:
-          {% raw %}GH_TOKEN: ${{ secrets.WORKFLOW_TOKEN }}{% endraw %}
         run: |
           pdm release {% raw %}${{ inputs.version }}{% endraw %}
           echo "tag=$(git describe --abbrev=0 --tags)" >> "$GITHUB_OUTPUT"
@@ -90,6 +89,7 @@ jobs:
         with:
           fetch-depth: 1
           {% raw %}ref: ${{ needs.release.outputs.tag }}{% endraw %}
+          persist-credentials: false
 
       - name: Cache requirements
         uses: actions/cache@v4
@@ -138,6 +138,7 @@ jobs:
         with:
           fetch-depth: 1
           {% raw %}ref: ${{ needs.release.outputs.tag }}{% endraw %}
+          persist-credentials: false
 
       - name: Cache requirements
         uses: actions/cache@v4
