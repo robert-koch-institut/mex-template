@@ -12,6 +12,7 @@ __pycache__/
 .pdm-build
 .pdm-python
 .Python
+.python-version
 *.egg
 *.egg-info/
 build/
