@@ -10,14 +10,19 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Added
 
 - add colors to pytest output in github actions
-- add storage to git and dockerignore
 - add more ruff linting rules
+- start type-checking tests folder by default
 
 ### Changes
+
+- update gitignore and dockerignore files
 
 ### Deprecated
 
 ### Removed
+
+- start removing pdm-specifics
+- remove renovatebot PR footer
 
 ### Fixed
 
