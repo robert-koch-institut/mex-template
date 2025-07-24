@@ -12,6 +12,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - add colors to pytest output in github actions
 - add more ruff linting rules
 - start type-checking tests folder by default
+- update security policy ahead of major releases
 
 ### Changes
 
@@ -27,6 +28,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Fixed
 
 - fixed release pipeline permissions
+- fix showing first line of each cookiecutter reject file
 
 ### Security
 
