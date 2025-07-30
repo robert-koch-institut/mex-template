@@ -13,6 +13,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - add more ruff linting rules
 - start type-checking tests folder by default
 - update security policy ahead of major releases
+- changes in tests directory trigger mypy pre-commit hook
 
 ### Changes
 
