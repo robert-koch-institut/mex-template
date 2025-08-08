@@ -34,7 +34,7 @@ pytest:
 wheel:
 	# build the python package
 	@ echo building wheel; \
-	pdm wheel; \
+	pdm build --no-sdist; \
 
 image:
 	# build the docker image
