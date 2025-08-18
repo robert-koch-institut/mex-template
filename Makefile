@@ -1,5 +1,5 @@
-.PHONY: all setup hooks install linter
-all: install linter
+.PHONY: all setup hooks install lint
+all: install lint
 
 setup:
 	# install meta requirements system-wide
@@ -17,7 +17,7 @@ install: setup hooks
 	@ echo installing package; \
 	pdm install; \
 
-linter:
-	# run the linter hooks from pre-commit on all files
+lint:
+	# run the lint hooks from pre-commit on all files
 	@ echo linting all files; \
 	pre-commit run --all-files; \
