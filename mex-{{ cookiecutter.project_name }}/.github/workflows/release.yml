@@ -37,7 +37,7 @@ jobs:
       tag: {% raw %}${{ steps.release.outputs.tag }}{% endraw %}
     steps:
       - name: Checkout repo
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5
         with:
           fetch-depth: 1
           token: {% raw %}${{ secrets.WORKFLOW_TOKEN }}{% endraw %}
@@ -84,7 +84,7 @@ jobs:
     needs: release
     steps:
       - name: Checkout repo
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5
         with:
           fetch-depth: 1
           {% raw %}ref: ${{ needs.release.outputs.tag }}{% endraw %}
@@ -133,7 +133,7 @@ jobs:
     needs: release
     steps:
       - name: Checkout repo
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5
         with:
           fetch-depth: 1
           {% raw %}ref: ${{ needs.release.outputs.tag }}{% endraw %}
