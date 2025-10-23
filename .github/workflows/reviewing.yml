@@ -59,7 +59,10 @@ jobs:
           HEAD_CHANGELOG="head/CHANGELOG.md"
           BASE_CHANGELOG="base/CHANGELOG.md"
 
-          if [ $"HEAD_CHANGELOG" == "$BASE_CHANGELOG" ]; then
+          echo $HEAD_CHANGELOG
+          echo $BASE_CHANGELOG
+
+          if [ $HEAD_CHANGELOG == $BASE_CHANGELOG ]; then
             echo "Error: The CHANGELOG.md has not been modified."
             echo "Please add your changes to CHANGELOG.md before merging."
             exit 1
