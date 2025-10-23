@@ -66,3 +66,4 @@ jobs:
           else
             echo "CHANGELOG.md has been modified."
             exit 0
+          fi
