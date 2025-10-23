@@ -7,7 +7,7 @@ on:
       - reopened
 
 concurrency:
-  group: {% raw %}${{ github.workflow }}-${{ github.ref }}{% endraw %}
+  group: ${{ github.workflow }}-${{ github.ref }}
   cancel-in-progress: true
 
 jobs:
@@ -22,9 +22,8 @@ jobs:
 
       - name: Add assignee
         env:
-          {% raw %}GH_TOKEN: ${{ secrets.WORKFLOW_TOKEN }}{% endraw %}
+          GH_TOKEN: ${{ secrets.WORKFLOW_TOKEN }}
         run: |
-          {% raw -%}
           user_name="${{ github.event.pull_request.user.login }}"
           user_type=$(gh api "users/${user_name}" --jq ".type")
           echo $user_name is a $user_type
@@ -35,7 +34,6 @@ jobs:
           if [[ -z "${{ github.event.pull_request.assignee.login }}" ]]; then
             gh pr edit ${{ github.event.pull_request.html_url }} --add-assignee "${user_name}"
           fi
-          {%- endraw %}
       
   check-changelog:
     name: Verify changelog
@@ -58,7 +56,6 @@ jobs:
       - name: Compare changelog
         id: changelog_diff
         run: |
-          {% raw -%}
           HEAD_CHANGELOG="head/CHANGELOG.md"
           BASE_CHANGELOG="base/CHANGELOG.md"
 
@@ -69,4 +66,3 @@ jobs:
           else
             echo "CHANGELOG.md has been modified."
             exit 0
-          {%- endraw %}
