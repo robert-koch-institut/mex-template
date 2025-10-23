@@ -7,7 +7,7 @@ on:
       - reopened
 
 concurrency:
-  group: ${{ github.workflow }}-${{ github.ref }}
+  group: {% raw %}${{ github.workflow }}-${{ github.ref }}{% endraw %}
   cancel-in-progress: true
 
 jobs:
@@ -22,8 +22,9 @@ jobs:
 
       - name: Add assignee
         env:
-          GH_TOKEN: ${{ secrets.WORKFLOW_TOKEN }}
+          {% raw %}GH_TOKEN: ${{ secrets.WORKFLOW_TOKEN }}{% endraw %}
         run: |
+          {% raw -%}
           user_name="${{ github.event.pull_request.user.login }}"
           user_type=$(gh api "users/${user_name}" --jq ".type")
           echo $user_name is a $user_type
@@ -34,3 +35,38 @@ jobs:
           if [[ -z "${{ github.event.pull_request.assignee.login }}" ]]; then
             gh pr edit ${{ github.event.pull_request.html_url }} --add-assignee "${user_name}"
           fi
+          {%- endraw %}
+      
+  check-changelog:
+    name: Verify changelog
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout head branch (PR)
+        uses: actions/checkout@v5
+        with:
+          ref: ${{ github.head_ref }}
+          path: 'head'
+
+      - name: Checkout base branch (target)
+        uses: actions/checkout@v5
+        with:
+          ref: ${{ github.base_ref }}
+          path: 'base'
+          fetch-depth: 1
+
+      - name: Compare changelog
+        id: changelog_diff
+        run: |
+          {% raw -%}
+          HEAD_CHANGELOG="head/CHANGELOG.md"
+          BASE_CHANGELOG="base/CHANGELOG.md"
+
+          if [ $"HEAD_CHANGELOG" == "$BASE_CHANGELOG" ]; then
+            echo "Error: The CHANGELOG.md has not been modified."
+            echo "Please add your changes to CHANGELOG.md before merging."
+            exit 1
+          else
+            echo "CHANGELOG.md has been modified."
+            exit 0
+          {%- endraw %}
