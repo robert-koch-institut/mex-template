@@ -8,7 +8,6 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [Unreleased]
 
 ### Added
-- add workflow to remind devs to update the changelog when making a PR
 
 ### Changes
 
