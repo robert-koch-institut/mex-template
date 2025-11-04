@@ -9,25 +9,16 @@ concurrency:
 
 jobs:
   check-changelog:
-    name: compare changelog
+    name: Check changelog
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout head branch (PR)
+      - name: Checkout Repository
         uses: actions/checkout@v5
         with:
-          ref: {% raw %}${{ github.head_ref }}{% endraw %}
-          path: 'head'
+          fetch-depth: 0
 
-      - name: Checkout base branch (target)
-        uses: actions/checkout@v5
-        with:
-          ref: {% raw %}${{ github.base_ref }}{% endraw %}
-          path: 'base'
-          fetch-depth: 1
-
-      - name: Compare changelog
-        id: changelog_diff
+      - name: Check for CHANGELOG.md changes
         run: |
           {% raw -%}
           if [ "${{ github.actor }}" = "RKIMetadataExchange" ]; then
@@ -35,10 +26,7 @@ jobs:
             exit 0;
           fi
 
-          HEAD_FILE="head/CHANGELOG.md"
-          BASE_FILE="base/CHANGELOG.md"
-
-          if cmp -s "$HEAD_FILE" "$BASE_FILE"; then
+          if git diff --quiet "origin/${{ github.base_ref }}"...HEAD -- "CHANGELOG.md"; then
             echo "Error: The CHANGELOG.md has not been modified."
             echo "Please add your changes to CHANGELOG.md before merging."
             exit 1
