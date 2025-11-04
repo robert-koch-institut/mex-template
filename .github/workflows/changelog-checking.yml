@@ -29,6 +29,11 @@ jobs:
       - name: Compare changelog
         id: changelog_diff
         run: |
+          if [ "${{ github.actor }}" = "RKIMetadataExchange" ]; then
+            echo "Actor is 'RKIMetadataExchange'. Skipping changelog check."
+            exit 0;
+          fi
+
           HEAD_FILE="head/CHANGELOG.md"
           BASE_FILE="base/CHANGELOG.md"
 
