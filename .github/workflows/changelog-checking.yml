@@ -1,0 +1,38 @@
+name: Check changelog
+
+on:
+  pull_request:
+
+jobs:
+  check-changelog:
+    name: Verify changelog
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout head branch (PR)
+        uses: actions/checkout@v5
+        with:
+          ref: ${{ github.head_ref }}
+          path: 'head'
+
+      - name: Checkout base branch (target)
+        uses: actions/checkout@v5
+        with:
+          ref: ${{ github.base_ref }}
+          path: 'base'
+          fetch-depth: 1
+
+      - name: Compare changelog
+        id: changelog_diff
+        run: |
+          HEAD_FILE="head/CHANGELOG.md"
+          BASE_FILE="base/CHANGELOG.md"
+
+          if cmp -s "$HEAD_FILE" "$BASE_FILE"; then
+            echo "Error: The CHANGELOG.md has not been modified."
+            echo "Please add your changes to CHANGELOG.md before merging."
+            exit 1
+          else
+            echo "CHANGELOG.md has been modified."
+            exit 0
+          fi
