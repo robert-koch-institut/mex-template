@@ -4,7 +4,7 @@ on:
   pull_request:
 
 concurrency:
-  group: ${{ github.workflow }}-${{ github.ref }}
+  group: {% raw %}${{ github.workflow }}-${{ github.ref }}{% endraw %}
   cancel-in-progress: true
 
 jobs:
@@ -16,19 +16,20 @@ jobs:
       - name: Checkout head branch (PR)
         uses: actions/checkout@v5
         with:
-          ref: ${{ github.head_ref }}
+          ref: {% raw %}${{ github.head_ref }}{% endraw %}
           path: 'head'
 
       - name: Checkout base branch (target)
         uses: actions/checkout@v5
         with:
-          ref: ${{ github.base_ref }}
+          ref: {% raw %}${{ github.base_ref }}{% endraw %}
           path: 'base'
           fetch-depth: 1
 
       - name: Compare changelog
         id: changelog_diff
         run: |
+          {% raw -%}
           HEAD_FILE="head/CHANGELOG.md"
           BASE_FILE="base/CHANGELOG.md"
 
@@ -40,3 +41,4 @@ jobs:
             echo "CHANGELOG.md has been modified."
             exit 0
           fi
+          {%- endraw %}
