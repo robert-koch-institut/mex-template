@@ -32,6 +32,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - fixed release pipeline permissions
 - fix showing first line of each cookiecutter reject file
 - pin hishel to below version 1
+- fix cookie link in sphinx docs footer
 
 ### Security
 
