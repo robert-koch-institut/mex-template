@@ -32,7 +32,7 @@ concurrency:
 jobs:
   release:
     runs-on: ubuntu-latest
-    timeout-minutes: 10
+    timeout-minutes: 15
     outputs:
       tag: {% raw %}${{ steps.release.outputs.tag }}{% endraw %}
     steps:
