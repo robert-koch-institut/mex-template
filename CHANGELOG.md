@@ -9,6 +9,20 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
+### Changes
+
+### Deprecated
+
+### Removed
+
+### Fixed
+
+### Security
+
+## [1.0.0] - 2025-11-19
+
+### Added
+
 - add colors to pytest output in github actions
 - add more ruff linting rules
 - start type-checking tests folder by default
@@ -19,8 +33,6 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Changes
 
 - update gitignore and dockerignore files
-
-### Deprecated
 
 ### Removed
 
@@ -33,8 +45,6 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - fix showing first line of each cookiecutter reject file
 - pin hishel to below version 1
 - fix cookie link in sphinx docs footer
-
-### Security
 
 ## [0.5.0] - 2025-04-29
 
