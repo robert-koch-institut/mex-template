@@ -69,13 +69,13 @@ jobs:
         run: |
           {% raw -%}
           eval "$(ssh-agent -s)"
-          pdm setup-commit-signing
+          mex setup-commit-signing
           {%- endraw %}
 
       - name: Release new version
         id: release
         run: |
-          pdm release {% raw %}${{ inputs.version }}{% endraw %}
+          mex release {% raw %}${{ inputs.version }}{% endraw %}
           echo "tag=$(git describe --abbrev=0 --tags)" >> "$GITHUB_OUTPUT"
 
   containerize:
