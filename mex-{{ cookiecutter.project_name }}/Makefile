@@ -8,6 +8,7 @@ setup:
 	# install meta requirements system-wide
 	@ echo installing requirements; \
 	pip --disable-pip-version-check install --force-reinstall -r requirements.txt; \
+	pip install .; \
 
 hooks:
 	# install pre-commit hooks when not in CI
