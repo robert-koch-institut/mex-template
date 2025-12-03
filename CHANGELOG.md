@@ -17,6 +17,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Fixed
 
+- pin pdm to version prior 2.26.2 because that broke our (old) mex-release
+
 ### Security
 
 ## [1.0.0] - 2025-11-19
