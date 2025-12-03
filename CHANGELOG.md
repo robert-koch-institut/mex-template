@@ -9,17 +9,32 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
+### Changes
+
+### Deprecated
+
+### Removed
+
+### Fixed
+
+- pin pdm to version prior 2.26.2 because that broke our (old) mex-release
+
+### Security
+
+## [1.0.0] - 2025-11-19
+
+### Added
+
 - add colors to pytest output in github actions
 - add more ruff linting rules
 - start type-checking tests folder by default
 - update security policy ahead of major releases
 - changes in tests directory trigger mypy pre-commit hook
+- add workflow to remind devs to update the changelog when making a PR
 
 ### Changes
 
 - update gitignore and dockerignore files
-
-### Deprecated
 
 ### Removed
 
@@ -30,9 +45,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - fixed release pipeline permissions
 - fix showing first line of each cookiecutter reject file
-- pin pdm to version prior 2.26.2 because that broke our (old) mex-release
-
-### Security
+- pin hishel to below version 1
+- fix cookie link in sphinx docs footer
 
 ## [0.5.0] - 2025-04-29
 

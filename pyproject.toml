@@ -1,6 +1,6 @@
 [project]
 name = "mex-template"
-version = "0.5.0"
+version = "1.0.0"
 description = "Cookiecutter template for MEx python projects."
 authors = [{ name = "MEx Team", email = "mex@rki.de" }]
 readme = { file = "README.md", content-type = "text/markdown" }
