@@ -134,8 +134,4 @@ build-backend = "hatchling.build"
 packages = ["mex"]
 
 [tool.hatch.build.targets.sdist]
-include = [
-    "mex",
-    "README.md",
-    "pyproject.toml",
-]
+packages = ["mex"]
