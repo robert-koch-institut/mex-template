@@ -43,7 +43,7 @@ jobs:
           token: {% raw %}${{ secrets.WORKFLOW_TOKEN }}{% endraw %}
 
       - name: Cache requirements
-        uses: actions/cache@v4
+        uses: actions/cache@v5
         env:
           cache-name: cache-requirements
         with:
@@ -91,7 +91,7 @@ jobs:
           persist-credentials: false
 
       - name: Cache requirements
-        uses: actions/cache@v4
+        uses: actions/cache@v5
         env:
           cache-name: cache-requirements
         with:
@@ -140,7 +140,7 @@ jobs:
           persist-credentials: false
 
       - name: Cache requirements
-        uses: actions/cache@v4
+        uses: actions/cache@v5
         env:
           cache-name: cache-requirements
         with:
