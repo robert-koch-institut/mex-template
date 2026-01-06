@@ -23,6 +23,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - pin pdm to version prior 2.26.2 because that broke our (old) mex-release
 - make renovate minimumReleaseAge optional
+- migrated pdm plugin scripts to mex cli
 
 ### Security
 
