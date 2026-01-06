@@ -57,7 +57,7 @@ jobs:
         run: |
           {% raw -%}
           eval "$(ssh-agent -s)"
-          pdm setup-commit-signing
+          mex setup-commit-signing
           {%- endraw %}
 
       - name: Update template
