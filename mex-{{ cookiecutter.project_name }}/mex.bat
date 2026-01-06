@@ -25,7 +25,7 @@ if "%CI%"=="" (
 
 @REM install packages from lock file in local virtual environment
 echo installing package
-uv sync
+uv sync --extra dev
 exit /b %errorlevel%
 
 
