@@ -159,3 +159,5 @@ Pipfile
 poetry.toml
 pytest.ini
 requirements.txt
+CODE_OF_CONDUCT.md
+CONTRIBUTING.md
