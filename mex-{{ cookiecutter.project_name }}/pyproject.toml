@@ -8,7 +8,9 @@ license = { file = "LICENSE" }
 urls = { Repository = "https://github.com/robert-koch-institut/mex-{{ cookiecutter.project_name }}" }
 requires-python = ">=3.11,<3.12"
 dependencies = []
-optional-dependencies.dev = [
+
+[dependency-groups]
+dev = [
     "ipdb>=0.13",
     "mypy>=1",
     "pytest-cov>=6",
