@@ -6,6 +6,3 @@ requires-python = "==3.11.*"
 name = "mex-template"
 version = "1.0.0"
 source = { virtual = "." }
-
-[package.metadata]
-provides-extras = ["dev"]
