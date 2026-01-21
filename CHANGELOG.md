@@ -14,6 +14,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - use standalone mex-release scripts instead of pdm scripts for release and commit signing
 - change python build system backend to hatchling
 - switch package manager from pdm to uv
+- update docker and git ignore files
+- update uv pre-commit hook to just check
 
 ### Deprecated
 
