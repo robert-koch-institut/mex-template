@@ -9,6 +9,20 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
+### Changes
+
+### Deprecated
+
+### Removed
+
+### Fixed
+
+### Security
+
+## [1.1.0] - 2026-01-22
+
+### Added
+
 - add python_version files to git
 - added support for python version 3.11-3.13
 - added docker-compose, dockerfile and pre-commit renovate managers
@@ -22,17 +36,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - update docker and git ignore files
 - update uv pre-commit hook to just check
 
-### Deprecated
-
-### Removed
-
 ### Fixed
 
 - pin pdm to version prior 2.26.2 because that broke our (old) mex-release
 - make renovate minimumReleaseAge optional
 - migrated pdm plugin scripts to mex cli
-
-### Security
 
 ## [1.0.0] - 2025-11-19
 
