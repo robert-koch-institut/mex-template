@@ -15,7 +15,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Removed
 
+- remove .python-version from gitignore
+
 ### Fixed
+
+- fix renovate PR body formatting
+- fix makefile phony targets
 
 ### Security
 
