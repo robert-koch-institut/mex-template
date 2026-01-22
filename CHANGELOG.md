@@ -12,6 +12,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - add python_version files to git
 - added support for python version 3.11-3.13
 - added docker-compose, dockerfile and pre-commit renovate managers
+- set license year to 2026
 
 ### Changes
 
