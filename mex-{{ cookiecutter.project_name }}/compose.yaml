@@ -1,4 +1,3 @@
-version: "3.8"
 services:
   mex-{{ cookiecutter.project_name }}:
     build:
