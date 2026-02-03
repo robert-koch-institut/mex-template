@@ -18,6 +18,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Removed
 
 - remove .python-version from gitignore
+- remove version from compose.yaml
 
 ### Fixed
 
