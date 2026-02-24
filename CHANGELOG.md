@@ -9,6 +9,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
+- added support for python version 3.14
 - add runtime-evaluated-base-classes ruff config
 
 ### Changes
