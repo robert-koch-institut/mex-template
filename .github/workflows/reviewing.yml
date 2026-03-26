@@ -28,7 +28,7 @@ jobs:
           user_type=$(gh api "users/${user_name}" --jq ".type")
           echo $user_name is a $user_type
           if [[ "$user_type" != "User" ]]; then
-            user_name="${{ vars.MEX_BOT_USER }}"
+            user_name="RKIMetadataExchange"
             echo using $user_name instead
           fi
           if [[ -z "${{ github.event.pull_request.assignee.login }}" ]]; then
