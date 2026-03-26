@@ -12,13 +12,17 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - added support for python version 3.14
 - add runtime-evaluated-base-classes ruff config
 - smoketest to ensure cookiecut repo runs tests
-- hardcode bot names and email in workflows, because they are in the codebase anyway
+- added MEX_CONTENT_WRITE_TOKEN secret with contents:r/w permissions
+- added MEX_PULL_REQUEST_WRITE_TOKEN secret with pull_requests:r/w permissions
+- added MEX_RENOVATE_TOKEN secret with contents+pull_requests:r/w permissions
 
 ### Changes
 
 - update mex-release version
 - ensure least privilege for access tokens across workflows
 - only run opencode workflow when running in official rki organization
+- rename open-code workflow to opencode, for consistency
+- avoid hardcoding org or repo name in workflows to make forking easier
 - rename SIGNING_KEY to MEX_SIGNING_KEY
 - rename SIGNING_PUB to MEX_SIGNING_PUB and move from secrets to vars
 - rename OPENCODE_TOKEN to MEX_OPENCODE_TOKEN
@@ -29,6 +33,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - remove .python-version from gitignore
 - remove version from compose.yaml
+- removed OPENCODE_USER secret, hardcoded instead
+- removed MEX_BOT_EMAIL and MEX_BOT_USER vars, hardcoded instead
+- removed GPG_SIGNING_KEY from renovate workflow in favor of platformCommit
 
 ### Fixed
 

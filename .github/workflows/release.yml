@@ -63,7 +63,6 @@ jobs:
 
       - name: Configure git
         env:
-
           SIGNING_KEY: ${{ secrets.MEX_SIGNING_KEY }}
           SIGNING_PUB: ${{ vars.MEX_SIGNING_PUB }}
         run: |
