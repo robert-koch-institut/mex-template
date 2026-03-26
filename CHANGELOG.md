@@ -11,6 +11,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - added support for python version 3.14
 - add runtime-evaluated-base-classes ruff config
+- smoketest to ensure cookiecut repo runs tests
 - hardcode bot names and email in workflows, because they are in the codebase anyway
 
 ### Changes
