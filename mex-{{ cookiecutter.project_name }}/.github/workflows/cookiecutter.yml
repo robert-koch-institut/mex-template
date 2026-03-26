@@ -52,7 +52,7 @@ jobs:
       - name: Configure git
         env:
           {% raw %}SIGNING_KEY: ${{ secrets.MEX_SIGNING_KEY }}{% endraw %}
-          {% raw %}SIGNING_PUB: ${{ secrets.MEX_SIGNING_PUB }}{% endraw %}
+          {% raw %}SIGNING_PUB: ${{ vars.MEX_SIGNING_PUB }}{% endraw %}
         run: |
           {% raw -%}
           eval "$(ssh-agent -s)"

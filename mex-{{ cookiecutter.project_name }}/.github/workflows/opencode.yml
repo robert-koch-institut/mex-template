@@ -1,4 +1,4 @@
-name: OpenCoDE
+name: Opencode
 
 on:
   push:
@@ -7,11 +7,12 @@ on:
   workflow_dispatch:
 
 concurrency:
-  group: ${{ github.workflow }}
+  group: {% raw %}${{ github.workflow }}{% endraw %}
   cancel-in-progress: true
 
 jobs:
   sync:
+    if: {% raw %}github.repository_owner == 'robert-koch-institut'{% endraw %}
     runs-on: ubuntu-latest
     timeout-minutes: 10
     steps:
@@ -22,6 +23,6 @@ jobs:
           fetch-depth: 0
       - name: Push main branch
         run: |
-          git remote add opencode https://${{ secrets.OPENCODE_USER }}:${{ secrets.OPENCODE_TOKEN }}@gitlab.opencode.de/robert-koch-institut/mex/mex-template.git
+          git remote add opencode https://{% raw %}RKIMetadataExchange:${{ secrets.MEX_OPENCODE_TOKEN }}{% endraw %}@gitlab.opencode.de/robert-koch-institut/mex/mex-{{ cookiecutter.project_name }}.git
           git push opencode -f
           git push opencode -f --tags

@@ -20,9 +20,10 @@ jobs:
         with:
           fetch-depth: 1
 
-      - name: Add assignee
+      - name: Resolve assignee
+        id: resolve
         env:
-          GH_TOKEN: ${{ secrets.WORKFLOW_TOKEN }}
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
           user_name="${{ github.event.pull_request.user.login }}"
           user_type=$(gh api "users/${user_name}" --jq ".type")
@@ -31,6 +32,12 @@ jobs:
             user_name="RKIMetadataExchange"
             echo using $user_name instead
           fi
-          if [[ -z "${{ github.event.pull_request.assignee.login }}" ]]; then
-            gh pr edit ${{ github.event.pull_request.html_url }} --add-assignee "${user_name}"
-          fi
+          echo "user_name=${user_name}" >> "$GITHUB_OUTPUT"
+
+      - name: Add assignee
+        if: ${{ !github.event.pull_request.assignee.login }}
+        env:
+          GH_TOKEN: ${{ secrets.MEX_PULL_REQUEST_WRITE_TOKEN }}
+        run: |
+          gh pr edit ${{ github.event.pull_request.html_url }} \
+          --add-assignee "${{ steps.resolve.outputs.user_name }}"

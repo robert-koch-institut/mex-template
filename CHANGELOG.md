@@ -11,12 +11,16 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - added support for python version 3.14
 - add runtime-evaluated-base-classes ruff config
-- hardcode bot name and email in workflows, because they are in the codebase anyway
+- hardcode bot names and email in workflows, because they are in the codebase anyway
 
 ### Changes
 
 - update mex-release version
 - ensure least privilege for access tokens across workflows
+- only run opencode workflow when running in official rki organization
+- rename SIGNING_KEY to MEX_SIGNING_KEY
+- rename SIGNING_PUB to MEX_SIGNING_PUB and move from secrets to vars
+- rename OPENCODE_TOKEN to MEX_OPENCODE_TOKEN
 
 ### Deprecated
 

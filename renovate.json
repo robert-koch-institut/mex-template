@@ -43,5 +43,6 @@
             "minimumReleaseAgeBehaviour": "timestamp-optional"
         }
     ],
+    "platformCommit": "enabled",
     "prFooter": ""
 }

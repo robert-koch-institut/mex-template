@@ -62,8 +62,10 @@ jobs:
 
       - name: Install requirements
         run: |
-          {% raw %}echo ${{ matrix.python-version }} > .python-version{% endraw %}
+          {% raw -%}
+          echo ${{ matrix.python-version }} > .python-version
           make install
+          {%- endraw %}
 
       - name: Run test suite
         run: make test

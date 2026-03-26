@@ -8,7 +8,7 @@ on:
   workflow_dispatch:
 
 concurrency:
-  group: ${{ github.workflow }}-${{ github.ref }}
+  group: ${{ github.workflow }}
   cancel-in-progress: true
 
 jobs:
@@ -24,8 +24,7 @@ jobs:
       - name: Run renovatebot
         uses: renovatebot/github-action@v46.1.2
         env:
-          RENOVATE_GIT_PRIVATE_KEY: ${{ secrets.GPG_SIGNING_KEY }}
-          RENOVATE_REPOSITORIES: "robert-koch-institut/mex-template"
+          RENOVATE_REPOSITORIES: ${{ github.repository }}
         with:
           configurationFile: renovate.json
-          token: ${{ secrets.WORKFLOW_TOKEN }}
+          token: ${{ secrets.MEX_RENOVATE_TOKEN }}
