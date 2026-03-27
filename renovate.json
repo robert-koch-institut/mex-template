@@ -39,5 +39,8 @@
         }
     ],
     "prFooter": "",
-    "printConfig": true
+    "printConfig": true,
+    "vulnerabilityAlerts": {
+        "enabled": true
+    }
 }
