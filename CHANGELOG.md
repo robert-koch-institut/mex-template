@@ -15,7 +15,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Changes
 
-- replace @v<versionno> with @<sha> #<versionno>
+- replace `@v<versionno>` with `@<sha> #<versionno>`
 - update mex-release version
 
 ### Deprecated
