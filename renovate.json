@@ -18,19 +18,7 @@
     },
     "packageRules": [
         {
-            "matchPackageNames": [
-                "mex-*"
-            ],
-            "matchUpdateTypes": [
-                "digest",
-                "lockFileMaintenance",
-                "major",
-                "minor",
-                "patch",
-                "pin"
-            ]
-        },
-        {
+            "description": "Apply all updates after cooldown of 7 days, hopefully avoiding malicious updates which are yanked in the meantime",
             "matchUpdateTypes": [
                 "digest",
                 "lockFileMaintenance",
@@ -41,7 +29,17 @@
             ],
             "minimumReleaseAge": "7 days",
             "minimumReleaseAgeBehaviour": "timestamp-optional"
+        },
+        {
+            "description": "Immediately apply updates of mex packages",
+            "matchPackageNames": [
+                "mex-*"
+            ],
+            "minimumReleaseAge": "0 days"
         }
     ],
-    "prFooter": ""
+    "prFooter": "",
+    "vulnerabilityAlerts": {
+        "enabled": true
+    }
 }
