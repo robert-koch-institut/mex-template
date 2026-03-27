@@ -38,5 +38,6 @@
             "minimumReleaseAge": "0 days"
         }
     ],
-    "prFooter": ""
+    "prFooter": "",
+    "printConfig": true
 }
