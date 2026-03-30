@@ -23,10 +23,6 @@ env:
   MEX_BOT_EMAIL: mex@rki.de
   MEX_BOT_USER: RKIMetadataExchange
 
-permissions:
-  contents: write
-  packages: write
-
 concurrency:
   group: {% raw %}${{ github.workflow }}-${{ github.ref }}{% endraw %}
   cancel-in-progress: false
@@ -35,8 +31,11 @@ jobs:
   release:
     runs-on: ubuntu-latest
     timeout-minutes: 15
+    permissions:
+      contents: read
     outputs:
       tag: {% raw %}${{ steps.release.outputs.tag }}{% endraw %}
+
     steps:
       - name: Checkout repo
         uses: actions/checkout@v6
@@ -86,6 +85,10 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 10
     needs: release
+    permissions:
+      contents: read
+      packages: write
+
     steps:
       - name: Checkout repo
         uses: actions/checkout@v6
@@ -140,6 +143,9 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 10
     needs: release
+    permissions:
+      contents: write
+
     steps:
       - name: Checkout repo
         uses: actions/checkout@v6

@@ -25,6 +25,10 @@ jobs:
   cruft:
     runs-on: ubuntu-latest
     timeout-minutes: 10
+    permissions:
+      contents: read
+      pull-requests: read
+
     steps:
       - name: Checkout repo
         uses: actions/checkout@v6
