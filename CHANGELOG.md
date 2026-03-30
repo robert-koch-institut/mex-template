@@ -12,6 +12,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - added support for python version 3.14
 - add runtime-evaluated-base-classes ruff config
 - smoketest to ensure cookiecut repo runs tests
+- renovate creates immediate PRs for vulnerabilities
 
 ### Changes
 
@@ -29,6 +30,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - fix renovate PR body formatting
 - fix makefile phony targets
+- fix renovate creating immediate PRs for mex-* updates
 
 ### Security
 
