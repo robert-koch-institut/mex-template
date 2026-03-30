@@ -17,12 +17,12 @@ jobs:
     timeout-minutes: 10
     steps:
       - name: Checkout repo
-        uses: actions/checkout@0c366fd6a839edf440554fa01a7085ccba70ac98 #v6.0.2
+        uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
         with:
           fetch-depth: 1
 
       - name: Run renovatebot
-        uses: renovatebot/github-action@68a3ea99af6ad249940b5a9fdf44fc6d7f14378b #v46.1.6
+        uses: renovatebot/github-action@68a3ea99af6ad249940b5a9fdf44fc6d7f14378b # v46.1.6
         env:
           RENOVATE_GIT_PRIVATE_KEY: {% raw %}${{ secrets.GPG_SIGNING_KEY }}{% endraw %}
           RENOVATE_REPOSITORIES: "robert-koch-institut/mex-{{ cookiecutter.project_name }}"
