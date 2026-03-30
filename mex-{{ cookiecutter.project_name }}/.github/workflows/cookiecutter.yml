@@ -25,13 +25,13 @@ jobs:
     timeout-minutes: 10
     steps:
       - name: Checkout repo
-        uses: actions/checkout@v6
+        uses: actions/checkout@0c366fd6a839edf440554fa01a7085ccba70ac98 #v6.0.2
         with:
           fetch-depth: 0
           {% raw %}token: ${{ secrets.WORKFLOW_TOKEN }}{% endraw %}
 
       - name: Cache requirements
-        uses: actions/cache@v5
+        uses: actions/cache@668228422ae6a00e4ad889ee87cd7109ec5666a7 #v5.0.4
         env:
           cache-name: cache-requirements
         with:
@@ -41,7 +41,7 @@ jobs:
             {% raw %}${{ env.cache-name }}-{% endraw %}
 
       - name: Setup python
-        uses: actions/setup-python@v6
+        uses: actions/setup-python@a309ff8b426b58ec0e2a45f0f869d46889d02405 #v6.2.0
         with:
           python-version: 3.14
 
