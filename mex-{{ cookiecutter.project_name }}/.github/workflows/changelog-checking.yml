@@ -2,6 +2,9 @@ name: Check changelog
 
 on:
   pull_request:
+    types:
+      - opened
+      - reopened
 
 concurrency:
   group: {% raw %}${{ github.workflow }}-${{ github.ref }}{% endraw %}
@@ -11,6 +14,9 @@ jobs:
   check-changelog:
     name: Check changelog
     runs-on: ubuntu-latest
+    timeout-minutes: 10
+    permissions:
+      contents: read
 
     steps:
       - name: Checkout Repository

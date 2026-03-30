@@ -25,10 +25,13 @@ concurrency:
 jobs:
   test:
     runs-on: ubuntu-latest
+    permissions:
+      contents: read
     strategy:
       matrix:
         python-version: [ 3.11, 3.12, 3.13, 3.14 ]
     timeout-minutes: 10
+
     steps:
       - name: Checkout repo
         uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
@@ -62,8 +65,10 @@ jobs:
 
       - name: Install requirements
         run: |
-          {% raw %}echo ${{ matrix.python-version }} > .python-version{% endraw %}
+          {% raw -%}
+          echo ${{ matrix.python-version }} > .python-version
           make install
+          {%- endraw %}
 
       - name: Run test suite
         run: make test

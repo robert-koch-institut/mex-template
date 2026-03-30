@@ -20,10 +20,8 @@ env:
   PIP_NO_INPUT: on
   PIP_PREFER_BINARY: on
   PY_COLORS: "1"
-
-permissions:
-  contents: write
-  packages: write
+  MEX_BOT_EMAIL: mex@rki.de
+  MEX_BOT_USER: RKIMetadataExchange
 
 concurrency:
   group: {% raw %}${{ github.workflow }}-${{ github.ref }}{% endraw %}
@@ -33,14 +31,16 @@ jobs:
   release:
     runs-on: ubuntu-latest
     timeout-minutes: 15
+    permissions:
+      contents: read
     outputs:
       tag: {% raw %}${{ steps.release.outputs.tag }}{% endraw %}
+
     steps:
       - name: Checkout repo
         uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
         with:
           fetch-depth: 1
-          token: {% raw %}${{ secrets.WORKFLOW_TOKEN }}{% endraw %}
 
       - name: Cache requirements
         uses: actions/cache@668228422ae6a00e4ad889ee87cd7109ec5666a7 # v5.0.4
@@ -62,10 +62,8 @@ jobs:
 
       - name: Configure git
         env:
-          {% raw %}MEX_BOT_EMAIL: ${{ vars.MEX_BOT_EMAIL }}{% endraw %}
-          {% raw %}MEX_BOT_USER: ${{ vars.MEX_BOT_USER }}{% endraw %}
-          {% raw %}SIGNING_KEY: ${{ secrets.SIGNING_KEY }}{% endraw %}
-          {% raw %}SIGNING_PUB: ${{ secrets.SIGNING_PUB }}{% endraw %}
+          {% raw %}SIGNING_KEY: ${{ secrets.MEX_SIGNING_KEY }}{% endraw %}
+          {% raw %}SIGNING_PUB: ${{ vars.MEX_SIGNING_PUB }}{% endraw %}
         run: |
           {% raw -%}
           eval "$(ssh-agent -s)"
@@ -74,14 +72,23 @@ jobs:
 
       - name: Release new version
         id: release
+        env:
+          {% raw %}GH_TOKEN: ${{ secrets.MEX_CONTENT_WRITE_TOKEN }}{% endraw %}
         run: |
-          mex release {% raw %}${{ inputs.version }}{% endraw %}
+          {% raw -%}
+          git remote set-url origin "https://x-access-token:${GH_TOKEN}@github.com/${GITHUB_REPOSITORY}.git"
+          mex release ${{ inputs.version }}
           echo "tag=$(git describe --abbrev=0 --tags)" >> "$GITHUB_OUTPUT"
+          {%- endraw %}
 
   containerize:
     runs-on: ubuntu-latest
     timeout-minutes: 10
     needs: release
+    permissions:
+      contents: read
+      packages: write
+
     steps:
       - name: Checkout repo
         uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
@@ -120,17 +127,25 @@ jobs:
           password: {% raw %}${{secrets.GITHUB_TOKEN}}{% endraw %}
 
       - name: Build, tag and push docker image
+        env:
+          {% raw %}IMAGE: ghcr.io/${{ github.repository }}{% endraw %}
+          {% raw %}TAG: ${{ needs.release.outputs.tag }}{% endraw %}
         run: |
+          {% raw -%}
           docker build . \
-          --tag ghcr.io/robert-koch-institut/mex-{{ cookiecutter.project_name }}:latest \
-          --tag ghcr.io/robert-koch-institut/mex-{{ cookiecutter.project_name }}:{% raw %}${{ github.sha }}{% endraw %} \
-          --tag ghcr.io/robert-koch-institut/mex-{{ cookiecutter.project_name }}:{% raw %}${{ needs.release.outputs.tag }}{% endraw %}
-          docker push --all-tags ghcr.io/robert-koch-institut/mex-{{ cookiecutter.project_name }}
+          --tag ${IMAGE}:latest \
+          --tag ${IMAGE}:${{ github.sha }} \
+          --tag ${IMAGE}:${TAG}
+          docker push --all-tags ${IMAGE}
+          {%- endraw %}
 
   distribute:
     runs-on: ubuntu-latest
     timeout-minutes: 10
     needs: release
+    permissions:
+      contents: write
+
     steps:
       - name: Checkout repo
         uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
@@ -159,10 +174,11 @@ jobs:
 
       - name: Build wheel and sdist distros and create a github release
         env:
-          {% raw %}GH_TOKEN: ${{ secrets.WORKFLOW_TOKEN }}{% endraw %}
+          {% raw %}GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}{% endraw %}
         run: |
           {% raw -%}
-          gh release create ${{ needs.release.outputs.tag }} --generate-notes --latest --verify-tag
+          gh release create ${{ needs.release.outputs.tag }} \
+          --generate-notes --latest --verify-tag
           uv build --out-dir dist
           for filename in dist/*; do
             gh release upload ${{ needs.release.outputs.tag }} ${filename};

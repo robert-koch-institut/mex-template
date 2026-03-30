@@ -18,17 +18,22 @@ env:
   PIP_NO_INPUT: on
   PIP_PREFER_BINARY: on
   PY_COLORS: "1"
+  MEX_BOT_EMAIL: mex@rki.de
+  MEX_BOT_USER: RKIMetadataExchange
 
 jobs:
   cruft:
     runs-on: ubuntu-latest
     timeout-minutes: 10
+    permissions:
+      contents: read
+      pull-requests: read
+
     steps:
       - name: Checkout repo
         uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
         with:
           fetch-depth: 0
-          {% raw %}token: ${{ secrets.WORKFLOW_TOKEN }}{% endraw %}
 
       - name: Cache requirements
         uses: actions/cache@668228422ae6a00e4ad889ee87cd7109ec5666a7 # v5.0.4
@@ -50,19 +55,16 @@ jobs:
 
       - name: Configure git
         env:
-          {% raw %}MEX_BOT_EMAIL: ${{ vars.MEX_BOT_EMAIL }}{% endraw %}
-          {% raw %}MEX_BOT_USER: ${{ vars.MEX_BOT_USER }}{% endraw %}
-          {% raw %}SIGNING_KEY: ${{ secrets.SIGNING_KEY }}{% endraw %}
-          {% raw %}SIGNING_PUB: ${{ secrets.SIGNING_PUB }}{% endraw %}
+          {% raw %}SIGNING_KEY: ${{ secrets.MEX_SIGNING_KEY }}{% endraw %}
+          {% raw %}SIGNING_PUB: ${{ vars.MEX_SIGNING_PUB }}{% endraw %}
         run: |
           {% raw -%}
           eval "$(ssh-agent -s)"
           mex setup-commit-signing
           {%- endraw %}
 
-      - name: Update template
-        env:
-          {% raw %}GH_TOKEN: ${{ secrets.WORKFLOW_TOKEN }}{% endraw %}
+      - name: Update template and commit
+        id: update
         run: |
           {% raw -%}
           if cruft check; then
@@ -75,6 +77,7 @@ jobs:
           fi
           template_url=$(python -c "print(__import__('json').load(open('.cruft.json'))['template'])")
           template_ref=$(git ls-remote ${template_url} --heads main --exit-code | cut -c -6)
+          echo "template_ref=${template_ref}" >> "$GITHUB_OUTPUT"
           git checkout main
           git checkout -b cruft/cookiecutter-template-${template_ref}
           cruft update --skip-apply-ask
@@ -90,6 +93,29 @@ jobs:
           done
           git add --all --verbose
           git commit --message "Bump cookiecutter template to $template_ref" --verbose
+          {%- endraw %}
+
+      - name: Push branch
+        if: {% raw %}steps.update.outputs.template_ref{% endraw %}
+        env:
+          {% raw %}GH_TOKEN: ${{ secrets.MEX_CONTENT_WRITE_TOKEN }}{% endraw %}
+          {% raw %}template_ref: ${{ steps.update.outputs.template_ref }}{% endraw %}
+        run: |
+          {% raw -%}
+          git remote set-url origin "https://x-access-token:${GH_TOKEN}@github.com/${GITHUB_REPOSITORY}.git"
           git push --set-upstream origin cruft/cookiecutter-template-${template_ref} --force --verbose
-          gh pr create --title "Bump cookiecutter template to $template_ref" --body-file .cruft-pr-body --label cruft --assignee ${{ vars.MEX_BOT_USER }}
+          {%- endraw %}
+
+      - name: Create pull request
+        if: {% raw %}steps.update.outputs.template_ref{% endraw %}
+        env:
+          {% raw %}GH_TOKEN: ${{ secrets.MEX_PULL_REQUEST_WRITE_TOKEN }}{% endraw %}
+          {% raw %}template_ref: ${{ steps.update.outputs.template_ref }}{% endraw %}
+        run: |
+          {% raw -%}
+          gh pr create \
+          --title "Bump cookiecutter template to ${template_ref}" \
+          --body-file .cruft-pr-body \
+          --label cruft \
+          --assignee ${MEX_BOT_USER}
           {%- endraw %}
