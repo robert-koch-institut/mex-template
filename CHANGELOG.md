@@ -15,6 +15,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - added MEX_CONTENT_WRITE_TOKEN secret with contents:r/w permissions
 - added MEX_PULL_REQUEST_WRITE_TOKEN secret with pull_requests:r/w permissions
 - added MEX_RENOVATE_TOKEN secret with contents+pull_requests:r/w permissions
+- renovate creates immediate PRs for vulnerabilities
 
 ### Changes
 
@@ -41,6 +42,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - fix renovate PR body formatting
 - fix makefile phony targets
+- fix renovate creating immediate PRs for mex-* updates
 
 ### Security
 
