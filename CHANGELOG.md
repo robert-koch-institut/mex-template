@@ -19,6 +19,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Changes
 
+- replace `@v<versionno>` with `@<sha> #<versionno>` in github actions
 - update mex-release version
 - ensure least privilege for access tokens across workflows
 - only run opencode workflow when running in official rki organization
