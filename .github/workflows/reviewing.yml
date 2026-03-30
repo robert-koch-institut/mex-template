@@ -40,7 +40,7 @@ jobs:
       - name: Add assignee
         if: ${{ !github.event.pull_request.assignee.login }}
         env:
-          GH_TOKEN: ${{ secrets.MEX_ADMINISTRATION_WRITE_TOKEN }}
+          GH_TOKEN: ${{ secrets.MEX_ISSUES_WRITE_TOKEN }}
         run: |
           gh pr edit ${{ github.event.pull_request.html_url }} \
           --add-assignee "${{ steps.resolve.outputs.user_name }}"
