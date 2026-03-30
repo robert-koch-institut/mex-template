@@ -44,6 +44,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - fix makefile phony targets
 - fix renovate creating immediate PRs for mex-* updates
 - correctly trigger documentation workflow on pushed tag, not github release
+- align changelog-checking workflow trigger with reviewing-assignee
 
 ### Security
 
