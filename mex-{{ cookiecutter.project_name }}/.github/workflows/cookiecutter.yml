@@ -110,7 +110,7 @@ jobs:
       - name: Create pull request
         if: {% raw %}steps.update.outputs.template_ref{% endraw %}
         env:
-          {% raw %}GH_TOKEN: ${{ secrets.MEX_COLLAB_WRITE_TOKEN }}{% endraw %}
+          {% raw %}GH_TOKEN: ${{ secrets.MEX_COOKIECUTTER_TOKEN }}{% endraw %}
           {% raw %}template_ref: ${{ steps.update.outputs.template_ref }}{% endraw %}
         run: |
           {% raw -%}
