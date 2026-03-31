@@ -23,6 +23,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - restore commit signing for renovate workflow (platformCommit only works for apps)
 - stop using deprecated toml license link
 - fix open-code badge url
+- use plain text signing key instead of base64 for renovate
 
 ### Security
 
