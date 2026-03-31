@@ -45,11 +45,11 @@ jobs:
       - name: Add assignee
         if: {% raw %}${{ !github.event.pull_request.assignee.login }}{% endraw %}
         env:
-          {% raw %}GH_TOKEN: ${{ secrets.MEX_ISSUES_WRITE_TOKEN }}{% endraw %}
+          {% raw %}GH_TOKEN: ${{ secrets.MEX_PULL_REQUEST_WRITE_TOKEN }}{% endraw %}
         run: |
           {% raw -%}
-          gh pr edit ${{ github.event.pull_request.html_url }} \
-          --add-assignee "${{ steps.resolve.outputs.user_name }}"
+          gh api repos/${{ github.repository }}/issues/${{ github.event.pull_request.number }}/assignees \
+          -f "assignees[]=${{ steps.resolve.outputs.user_name }}"
           {%- endraw %}
 
   check-changelog:
