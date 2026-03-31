@@ -13,7 +13,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - add runtime-evaluated-base-classes ruff config
 - smoketest to ensure cookiecut repo runs tests
 - added MEX_CONTENT_WRITE_TOKEN secret with contents:r/w permissions
-- added MEX_PULL_REQUEST_WRITE_TOKEN secret with pull_requests:r/w permissions
+- added MEX_COLLAB_WRITE_TOKEN secret with pull_requests:r/w and issues:r/w permissions
 - added MEX_RENOVATE_TOKEN secret with contents+pull_requests:r/w permissions
 - renovate creates immediate PRs for vulnerabilities
 
@@ -28,6 +28,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - rename SIGNING_KEY to MEX_SIGNING_KEY
 - rename SIGNING_PUB to MEX_SIGNING_PUB and move from secrets to vars
 - rename OPENCODE_TOKEN to MEX_OPENCODE_TOKEN
+- combine add-assignee and check-changelog jobs into one workflow
 
 ### Deprecated
 
@@ -46,6 +47,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - fix renovate creating immediate PRs for mex-* updates
 - correctly trigger documentation workflow on pushed tag, not github release
 - align changelog-checking workflow trigger with reviewing-assignee
+- add persist-credentials: false to relevant checkouts
 
 ### Security
 
