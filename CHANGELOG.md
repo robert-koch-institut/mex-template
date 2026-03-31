@@ -28,6 +28,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - rename SIGNING_KEY to MEX_SIGNING_KEY
 - rename SIGNING_PUB to MEX_SIGNING_PUB and move from secrets to vars
 - rename OPENCODE_TOKEN to MEX_OPENCODE_TOKEN
+- combine add-assignee and check-changelog jobs into one workflow
 
 ### Deprecated
 
