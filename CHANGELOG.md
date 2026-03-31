@@ -21,6 +21,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Fixed
 
 - stop using deprecated toml license link
+- fix open-code badge url
 
 ### Security
 

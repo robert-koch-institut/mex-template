@@ -6,7 +6,7 @@
 [![cve-scan](https://github.com/robert-koch-institut/mex-{{ cookiecutter.project_name }}/actions/workflows/cve-scan.yml/badge.svg)](https://github.com/robert-koch-institut/mex-{{ cookiecutter.project_name }}/actions/workflows/cve-scan.yml)
 [![documentation](https://github.com/robert-koch-institut/mex-{{ cookiecutter.project_name }}/actions/workflows/documentation.yml/badge.svg)](https://robert-koch-institut.github.io/mex-{{ cookiecutter.project_name }})
 [![linting](https://github.com/robert-koch-institut/mex-{{ cookiecutter.project_name }}/actions/workflows/linting.yml/badge.svg)](https://github.com/robert-koch-institut/mex-{{ cookiecutter.project_name }}/actions/workflows/linting.yml)
-[![open-code](https://github.com/robert-koch-institut/mex-{{ cookiecutter.project_name }}/actions/workflows/open-code.yml/badge.svg)](https://gitlab.opencode.de/robert-koch-institut/mex/mex-{{ cookiecutter.project_name }})
+[![opencode](https://github.com/robert-koch-institut/mex-{{ cookiecutter.project_name }}/actions/workflows/opencode.yml/badge.svg)](https://gitlab.opencode.de/robert-koch-institut/mex/mex-{{ cookiecutter.project_name }})
 [![testing](https://github.com/robert-koch-institut/mex-{{ cookiecutter.project_name }}/actions/workflows/testing.yml/badge.svg)](https://github.com/robert-koch-institut/mex-{{ cookiecutter.project_name }}/actions/workflows/testing.yml)
 
 ## Project
