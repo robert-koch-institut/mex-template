@@ -12,12 +12,15 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Changes
 
 - enable support for immutable github releases
+- update uv and ruff dependencies
 
 ### Deprecated
 
 ### Removed
 
 ### Fixed
+
+- stop using deprecated toml license link
 
 ### Security
 
