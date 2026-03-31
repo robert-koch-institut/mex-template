@@ -20,6 +20,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Fixed
 
+- restore commit signing for renovate workflow (platformCommit only works for apps)
 - stop using deprecated toml license link
 - fix open-code badge url
 
