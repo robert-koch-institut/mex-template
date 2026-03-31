@@ -27,7 +27,7 @@ jobs:
       - name: Run renovatebot
         uses: renovatebot/github-action@68a3ea99af6ad249940b5a9fdf44fc6d7f14378b # v46.1.6
         env:
-          RENOVATE_GIT_PRIVATE_KEY: {% raw %}${{ secrets.MEX_SIGNING_KEY }}{% endraw %}
+          RENOVATE_GIT_PRIVATE_KEY: {% raw %}${{ secrets.MEX_PLAIN_SIGNING_KEY }}{% endraw %}
           RENOVATE_REPOSITORIES: {% raw %}${{ github.repository }}{% endraw %}
         with:
           configurationFile: renovate.json
