@@ -13,7 +13,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - add runtime-evaluated-base-classes ruff config
 - smoketest to ensure cookiecut repo runs tests
 - added MEX_CONTENT_WRITE_TOKEN secret with contents:r/w permissions
-- added MEX_PULL_REQUEST_WRITE_TOKEN secret with pull_requests:r/w permissions
+- added MEX_COLLAB_WRITE_TOKEN secret with pull_requests:r/w and issues:r/w permissions
 - added MEX_RENOVATE_TOKEN secret with contents+pull_requests:r/w permissions
 - renovate creates immediate PRs for vulnerabilities
 
