@@ -46,7 +46,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - fix renovate creating immediate PRs for mex-* updates
 - correctly trigger documentation workflow on pushed tag, not github release
 - align changelog-checking workflow trigger with reviewing-assignee
-- add persist-credentials to relevant checkouts
+- add persist-credentials: false to relevant checkouts
 - use MEX_ISSUES_WRITE_TOKEN for assigning
 
 ### Security
