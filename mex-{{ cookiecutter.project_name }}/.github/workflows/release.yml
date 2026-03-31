@@ -178,10 +178,7 @@ jobs:
           {% raw %}GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}{% endraw %}
         run: |
           {% raw -%}
-          gh release create ${{ needs.release.outputs.tag }} \
-          --generate-notes --latest --verify-tag
           uv build --out-dir dist
-          for filename in dist/*; do
-            gh release upload ${{ needs.release.outputs.tag }} ${filename};
-          done
+          gh release create ${{ needs.release.outputs.tag }} \
+          --generate-notes --latest --verify-tag dist/*
           {%- endraw %}
