@@ -9,6 +9,20 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
+### Changes
+
+### Deprecated
+
+### Removed
+
+### Fixed
+
+### Security
+
+## [1.2.0] - 2026-03-31
+
+### Added
+
 - added support for python version 3.14
 - add runtime-evaluated-base-classes ruff config
 - smoketest to ensure cookiecut repo runs tests
@@ -30,8 +44,6 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - rename OPENCODE_TOKEN to MEX_OPENCODE_TOKEN
 - combine add-assignee and check-changelog jobs into one workflow
 
-### Deprecated
-
 ### Removed
 
 - remove .python-version from gitignore
@@ -48,8 +60,6 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - correctly trigger documentation workflow on pushed tag, not github release
 - align changelog-checking workflow trigger with reviewing-assignee
 - add persist-credentials: false to relevant checkouts
-
-### Security
 
 ## [1.1.0] - 2026-01-22
 
