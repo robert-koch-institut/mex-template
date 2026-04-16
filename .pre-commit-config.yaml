@@ -7,9 +7,18 @@ repos:
         name: json
         args: [--autofix, --indent=4, --no-ensure-ascii]
         exclude: cookiecutter.json
+      - id: check-yaml
+        name: yaml
+        exclude: mex-{{ cookiecutter.project_name }}/.github/workflows
       - id: end-of-file-fixer
         name: eof
       - id: trailing-whitespace
         name: whitespaces
       - id: fix-byte-order-marker
         name: byte-order
+  - repo: https://github.com/astral-sh/uv-pre-commit
+    rev: 0.11.7
+    hooks:
+      - id: uv-lock
+        name: uv
+        args: [--check]
