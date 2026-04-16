@@ -43,7 +43,6 @@ wheel:
 image:
 	# build the docker image
 	@ echo building docker image mex-{{ cookiecutter.project_name }}:${LATEST}; \
-	export DOCKER_BUILDKIT=1; \
 	docker build \
 		--tag rki/mex-{{ cookiecutter.project_name }}:${LATEST} \
 		--tag rki/mex-{{ cookiecutter.project_name }}:latest .; \
@@ -53,15 +52,13 @@ run: image
 	@ echo running docker container mex-{{ cookiecutter.project_name }}:${LATEST}; \
 	docker run \
 		--env MEX_{{ cookiecutter.project_name|upper }}_HOST=0.0.0.0 \
-		--publish 8081:8081 \
+		--publish 8080:8080 \
 		rki/mex-{{ cookiecutter.project_name }}:${LATEST}; \
 
-start: image
+start:
 	# start the service using docker compose
 	@ echo start mex-{{ cookiecutter.project_name }}:${LATEST} with compose; \
-	export DOCKER_BUILDKIT=1; \
-	export COMPOSE_DOCKER_CLI_BUILD=1; \
-	docker compose up --remove-orphans; \
+	docker compose up --build --remove-orphans; \
 
 docs:
 	# use sphinx to auto-generate html docs from code
