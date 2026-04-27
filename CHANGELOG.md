@@ -9,8 +9,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
+- added angular specific config to ignore files
+
 ### Changes
 
+- moved docker image from locked-requirements.txt to two stage builds
+- run services as numeric users and skip user creation entirely
 - enable support for immutable github releases
 - use specific MEX_COOKIECUTTER_TOKEN for cookiecutter workflows
 - update uv and ruff dependencies
@@ -18,6 +22,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Deprecated
 
 ### Removed
+
+- remove uv-export from cve pipeline because trivy already supports uv.lock files
 
 ### Fixed
 
