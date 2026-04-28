@@ -31,6 +31,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - stop using deprecated toml license link
 - fix open-code badge url
 - use plain text signing key instead of base64 for renovate
+- fix token used for cookie cutter push branch step
 
 ### Security
 
