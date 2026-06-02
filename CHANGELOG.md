@@ -19,6 +19,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - enable support for immutable github releases
 - use specific MEX_COOKIECUTTER_TOKEN for cookiecutter workflows
 - update uv and ruff dependencies
+- use docker-build-push instead of manual docker commands
 
 ### Deprecated
 
