@@ -129,25 +129,24 @@ jobs:
       - name: Sign docker images
         env:
           {% raw %}IMAGE: ghcr.io/${{ github.repository }}{% endraw %}
-          {% raw %}COSIGN_PRIVATE_KEY: ${{ secrets.MEX_SIGNING_KEY }}{% endraw %}
+          {% raw %}DIGEST: ${{ steps.push_step.outputs.digest }}{% endraw %}
+          {% raw %}BASE64_PRIV_KEY: ${{ secrets.MEX_SIGNING_KEY }}{% endraw %}
           COSIGN_PASSWORD: ""
-          {% raw %}COSIGN_PUBLIC_KEY: ${{ vars.MEX_SIGNING_PUB }}{% endraw %}
+          {% raw %}BASE64_PUB_KEY: ${{ vars.MEX_SIGNING_PUB }}{% endraw %}
           COSIGN_DOCKER_MEDIA_TYPES: 1
         run: |
-          echo "${COSIGN_PRIVATE_KEY}" > cosign.key
-          cosign sign -d --yes --registry-referrers-mode=legacy --key cosign.key ${IMAGE}@${{ steps.push_step.outputs.digest }}
+          {% raw -%}
+          # signing
+          export COSIGN_PRIVATE_KEY=$(echo "$BASE64_PRIV_KEY" | base64 --decode)
+          cosign sign -d --yes --registry-referrers-mode=legacy --key env://COSIGN_PRIVATE_KEY ${IMAGE}@${DIGEST}
           echo "Signature generated successfully"
-          cosign tree ${IMAGE}@${{ steps.push_step.outputs.digest }}
-          rm cosign.key
 
-      - name: Verify upload
-        env:
-          {% raw %}IMAGE: ghcr.io/${{ github.repository }}{% endraw %}
-          COSIGN_PUBLIC_KEY: ${{ vars.MEX_SIGNING_PUB }}
-        run: |
-          echo "${COSIGN_PUBLIC_KEY}" > cosign.pub
-          cosign verify --key cosign.pub -d ${IMAGE}@${{ steps.push_step.outputs.digest }}
-          rm cosign.pub
+          # smoke test
+          echo "$BASE64_PUB_KEY" | base64 --decode > temp_ssh_id.pub
+          ssh-keygen -e -m PKCS8 -f temp_ssh_id.pub > cosign.pub
+          cosign verify --key cosign.pub "${IMAGE}@${DIGEST}"
+          rm temp_ssh_id.pub cosign.pub
+          {%- endraw %}
 
   distribute:
     runs-on: ubuntu-latest
