@@ -141,12 +141,12 @@ jobs:
           # signing
           echo "Signing Image: ${IMAGE}@${DIGEST}"
           export COSIGN_PRIVATE_KEY=$(echo "$BASE64_PRIV_KEY" | base64 --decode)
-          cosign sign -d --yes --registry-referrers-mode=legacy --key env://COSIGN_PRIVATE_KEY ${IMAGE}@${DIGEST}
+          cosign sign --yes --registry-referrers-mode=legacy --key env://COSIGN_PRIVATE_KEY ${IMAGE}@${DIGEST}
           echo "Signature generated successfully"
 
           # smoke test
           echo "Verifying signature"
-          trap 'rm temp_ssh_id.pub cosign.pub' EXIT
+          trap 'rm -f temp_ssh_id.pub cosign.pub' EXIT
           echo "$BASE64_PUB_KEY" | base64 --decode > temp_ssh_id.pub
           ssh-keygen -e -m PKCS8 -f temp_ssh_id.pub > cosign.pub
           cosign verify --key cosign.pub "${IMAGE}@${DIGEST}"
