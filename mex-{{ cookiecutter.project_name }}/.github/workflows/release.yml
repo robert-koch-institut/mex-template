@@ -106,17 +106,48 @@ jobs:
           password: {% raw %}${{secrets.GITHUB_TOKEN}}{% endraw %}
 
       - name: Build, tag and push docker image
+        id: push_step
+        uses: docker/build-push-action@bcafcacb16a39f128d818304e6c9c0c18556b85f # v.7.1.0
         env:
           {% raw %}IMAGE: ghcr.io/${{ github.repository }}{% endraw %}
           {% raw %}TAG: ${{ needs.release.outputs.tag }}{% endraw %}
+        with:
+          push: true
+          tags: |
+            {% raw -%}
+            ${IMAGE}:latest
+            ${IMAGE}:${{ github.sha }}
+            ${IMAGE}:${TAG}
+            {%- endraw %}
+          outputs: type=image,oci-mediatypes=true
+
+      - name: Install cosign
+        uses: sigstore/cosign-installer@6f9f17788090df1f26f669e9d70d6ae9567deba6 # v4.1.2
+        with:
+          cosign-release: 'v2.4.1'
+
+      - name: Sign docker images
+        env:
+          {% raw %}IMAGE: ghcr.io/${{ github.repository }}{% endraw %}
+          {% raw %}COSIGN_PRIVATE_KEY: ${{ secrets.MEX_SIGNING_KEY }}{% endraw %}
+          COSIGN_PASSWORD: ""
+          {% raw %}COSIGN_PUBLIC_KEY: ${{ vars.MEX_SIGNING_PUB }}{% endraw %}
+          COSIGN_DOCKER_MEDIA_TYPES: 1
         run: |
-          {% raw -%}
-          docker build . \
-          --tag ${IMAGE}:latest \
-          --tag ${IMAGE}:${{ github.sha }} \
-          --tag ${IMAGE}:${TAG}
-          docker push --all-tags ${IMAGE}
-          {%- endraw %}
+          echo "${COSIGN_PRIVATE_KEY}" > cosign.key
+          cosign sign -d --yes --registry-referrers-mode=legacy --key cosign.key ${IMAGE}@${{ steps.push_step.outputs.digest }}
+          echo "Signature generated successfully"
+          cosign tree ${IMAGE}@${{ steps.push_step.outputs.digest }}
+          rm cosign.key
+
+      - name: Verify upload
+        env:
+          {% raw %}IMAGE: ghcr.io/${{ github.repository }}{% endraw %}
+          COSIGN_PUBLIC_KEY: ${{ vars.MEX_SIGNING_PUB }}
+        run: |
+          echo "${COSIGN_PUBLIC_KEY}" > cosign.pub
+          cosign verify --key cosign.pub -d ${IMAGE}@${{ steps.push_step.outputs.digest }}
+          rm cosign.pub
 
   distribute:
     runs-on: ubuntu-latest
