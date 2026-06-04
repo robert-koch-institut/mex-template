@@ -129,7 +129,7 @@ jobs:
 
       - name: Sign Docker image keyless
         env:
-          {% raw %}IMAGE: ghcr.io/${{ github.repository }}:${{ steps.push_step.outputs.digest }}{% endraw %}
+          {% raw %}IMAGE: ghcr.io/${{ github.repository }}@${{ steps.push_step.outputs.digest }}{% endraw %}
         run: |
           {% raw %}cosign sign --yes "$IMAGE"{% endraw %}
 
