@@ -20,6 +20,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - use specific MEX_COOKIECUTTER_TOKEN for cookiecutter workflows
 - update uv and ruff dependencies
 - use docker-build-push instead of manual docker commands
+- renovate: update pre-commit hooks
+- renovate: create grouped PRs for non-major python and github action updates
+- renovate: widen lock file maintenance window so delayed workflow runs are more likely
+  within the window
 
 ### Deprecated
 
