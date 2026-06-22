@@ -68,7 +68,9 @@ jobs:
         id: update
         run: |
           {% raw -%}
-          if cruft check; then
+          template_url=$(python -c "print(__import__('json').load(open('.cruft.json'))['template'])")
+          template_tag=$(git ls-remote --tags --sort=-v:refname "${template_url}" | grep -v '\^{}' | head -1 | sed 's|.*refs/tags/||')
+          if cruft check --checkout "${template_tag}"; then
             echo template is up to date
             exit 0
           fi
@@ -76,14 +78,12 @@ jobs:
             echo already seeing pull request
             exit 0
           fi
-          template_url=$(python -c "print(__import__('json').load(open('.cruft.json'))['template'])")
-          template_ref=$(git ls-remote ${template_url} --heads main --exit-code | cut -c -6)
-          echo "template_ref=${template_ref}" >> "$GITHUB_OUTPUT"
+          echo "template_tag=${template_tag}" >> "$GITHUB_OUTPUT"
           git checkout main
-          git checkout -b cruft/cookiecutter-template-${template_ref}
-          cruft update --skip-apply-ask
-          printf '### Changes\n\n- bumped cookiecutter template to %s/commit/%s\n' "$template_url" "$template_ref" > .cruft-pr-body
-          sed -i "0,/^### Changes/s|^### Changes.*|&\n\n- updated template to ${template_url}/commit/${template_ref}|" CHANGELOG.md
+          git checkout -b cruft/cookiecutter-template-${template_tag}
+          cruft update --checkout "${template_tag}" --skip-apply-ask
+          printf '### Changes\n\n- bumped cookiecutter template to %s/releases/tag/%s\n' "$template_url" "$template_tag" > .cruft-pr-body
+          sed -i "0,/^### Changes/s|^### Changes.*|&\n\n- updated template to ${template_url}/releases/tag/${template_tag}|" CHANGELOG.md
           if [[ $(find . -type f -name "*.rej" | wc -l) -ne 0 ]]; then
             printf '\n### Conflicts\n' >> .cruft-pr-body
           fi
@@ -93,29 +93,29 @@ jobs:
             printf '```\n' >> .cruft-pr-body
           done
           git add --all --verbose
-          git commit --message "Bump cookiecutter template to $template_ref" --verbose
+          git commit --message "Bump cookiecutter template to $template_tag" --verbose
           {%- endraw %}
 
       - name: Push branch
-        if: {% raw %}steps.update.outputs.template_ref{% endraw %}
+        if: {% raw %}steps.update.outputs.template_tag{% endraw %}
         env:
           {% raw %}GH_TOKEN: ${{ secrets.MEX_COOKIECUTTER_TOKEN }}{% endraw %}
-          {% raw %}template_ref: ${{ steps.update.outputs.template_ref }}{% endraw %}
+          {% raw %}template_tag: ${{ steps.update.outputs.template_tag }}{% endraw %}
         run: |
           {% raw -%}
           git remote set-url origin "https://x-access-token:${GH_TOKEN}@github.com/${GITHUB_REPOSITORY}.git"
-          git push --set-upstream origin cruft/cookiecutter-template-${template_ref} --force --verbose
+          git push --set-upstream origin cruft/cookiecutter-template-${template_tag} --force --verbose
           {%- endraw %}
 
       - name: Create pull request
-        if: {% raw %}steps.update.outputs.template_ref{% endraw %}
+        if: {% raw %}steps.update.outputs.template_tag{% endraw %}
         env:
           {% raw %}GH_TOKEN: ${{ secrets.MEX_COOKIECUTTER_TOKEN }}{% endraw %}
-          {% raw %}template_ref: ${{ steps.update.outputs.template_ref }}{% endraw %}
+          {% raw %}template_tag: ${{ steps.update.outputs.template_tag }}{% endraw %}
         run: |
           {% raw -%}
           gh pr create \
-          --title "Bump cookiecutter template to ${template_ref}" \
+          --title "Bump cookiecutter template to ${template_tag}" \
           --body-file .cruft-pr-body \
           --label cruft \
           --assignee ${MEX_BOT_USER}

@@ -14,6 +14,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Changes
 
+- cookiecutter.yml workflow now tracks tagged releases instead of every main commit
 - moved docker image from locked-requirements.txt to two stage builds
 - run services as numeric users and skip user creation entirely
 - enable support for immutable github releases
@@ -33,7 +34,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Fixed
 
-- fix open pull request counting using gh cli json output
+- stop opening new cruft PRs when there already is one
 - restore commit signing for renovate workflow (platformCommit only works for apps)
 - stop using deprecated toml license link
 - fix open-code badge url
