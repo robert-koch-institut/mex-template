@@ -80,10 +80,10 @@ jobs:
           fi
           echo "template_tag=${template_tag}" >> "$GITHUB_OUTPUT"
           git checkout main
-          git checkout -b cruft/cookiecutter-template-${template_tag}
+          git checkout -b cruft/mex-template-${template_tag}
           cruft update --checkout "${template_tag}" --skip-apply-ask
-          printf '### Changes\n\n- bumped cookiecutter template to %s/releases/tag/%s\n' "$template_url" "$template_tag" > .cruft-pr-body
-          sed -i "0,/^### Changes/s|^### Changes.*|&\n\n- updated template to ${template_url}/releases/tag/${template_tag}|" CHANGELOG.md
+          printf '### Changes\n\n- new template %s/releases/tag/%s\n' "$template_url" "$template_tag" > .cruft-pr-body
+          sed -i "0,/^### Changes$/{/^### Changes$/{N;s|\n|\n\n- new template ${template_url}/releases/tag/${template_tag}|}}" CHANGELOG.md
           if [[ $(find . -type f -name "*.rej" | wc -l) -ne 0 ]]; then
             printf '\n### Conflicts\n' >> .cruft-pr-body
           fi
@@ -93,7 +93,7 @@ jobs:
             printf '```\n' >> .cruft-pr-body
           done
           git add --all --verbose
-          git commit --message "Bump cookiecutter template to $template_tag" --verbose
+          git commit --message "Update mex-template to $template_tag" --verbose
           {%- endraw %}
 
       - name: Push branch
