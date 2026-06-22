@@ -38,6 +38,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - fix open-code badge url
 - use plain text signing key instead of base64 for renovate
 - fix token used for cookie cutter push branch step
+- fix faulty command for verification in readme
+- fix github action env var reference in release.yml
 
 ### Security
 

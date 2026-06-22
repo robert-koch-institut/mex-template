@@ -116,9 +116,9 @@ jobs:
           push: true
           tags: |
             {% raw -%}
-            ${IMAGE}:latest
-            ${IMAGE}:${{ github.sha }}
-            ${IMAGE}:${TAG}
+            ${{ env.IMAGE }}:latest
+            ${{ env.IMAGE }}:${{ github.sha }}
+            ${{ env.IMAGE }}:${{ env.TAG }}
             {%- endraw %}
           outputs: type=image,oci-mediatypes=true
 
