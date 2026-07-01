@@ -9,6 +9,20 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
+### Changes
+
+### Deprecated
+
+### Removed
+
+### Fixed
+
+### Security
+
+## [1.3.0] - 2026-07-01
+
+### Added
+
 - added angular specific config to ignore files
 - sign docker images using cosign (keyless)
 
@@ -26,8 +40,6 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - renovate: widen lock file maintenance window so delayed workflow runs are more likely
   within the window
 
-### Deprecated
-
 ### Removed
 
 - remove uv-export from cve pipeline because trivy already supports uv.lock files
@@ -44,8 +56,6 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - fix token used for cookie cutter push branch step
 - fix faulty command for verification in readme
 - fix github action env var reference in release.yml
-
-### Security
 
 ## [1.2.0] - 2026-03-31
 
