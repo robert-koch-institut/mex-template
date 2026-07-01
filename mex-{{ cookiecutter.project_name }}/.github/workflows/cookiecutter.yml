@@ -66,6 +66,8 @@ jobs:
 
       - name: Update template and commit
         id: update
+        env:
+          {% raw %}GH_TOKEN: ${{ secrets.MEX_COOKIECUTTER_TOKEN }}{% endraw %}
         run: |
           {% raw -%}
           template_url=$(python -c "print(__import__('json').load(open('.cruft.json'))['template'])")

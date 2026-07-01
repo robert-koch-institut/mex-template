@@ -113,6 +113,7 @@ jobs:
           {% raw %}IMAGE: ghcr.io/${{ github.repository }}{% endraw %}
           {% raw %}TAG: ${{ needs.release.outputs.tag }}{% endraw %}
         with:
+          context: .
           push: true
           tags: |
             {% raw -%}
