@@ -31,10 +31,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Removed
 
 - remove uv-export from cve pipeline because trivy already supports uv.lock files
-- ensure docker build and push uses checked out context
 
 ### Fixed
 
+- fix cookiecutter pr exists check permissions
+- ensure docker build and push uses checked out context
 - stop opening new cruft PRs when there already is one
 - restore commit signing for renovate workflow (platformCommit only works for apps)
 - stop using deprecated toml license link
