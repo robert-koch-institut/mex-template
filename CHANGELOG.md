@@ -31,6 +31,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Removed
 
 - remove uv-export from cve pipeline because trivy already supports uv.lock files
+- ensure docker build and push uses checked out context
 
 ### Fixed
 
