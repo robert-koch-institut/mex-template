@@ -53,8 +53,18 @@ jobs:
         env:
           cache-name: cache-environment
         with:
-          path: ~/.cache/pip
-          {% raw %}key: ${{ env.cache-name }}-${{ hashFiles('*.lock') }}{% endraw %}
+          path: ~/.cache/uv
+          {% raw %}key: ${{ env.cache-name }}-${{ hashFiles('uv.lock') }}{% endraw %}
+          restore-keys: |
+            {% raw %}${{ env.cache-name }}-{% endraw %}
+
+      - name: Cache pre-commit
+        uses: actions/cache@55cc8345863c7cc4c66a329aec7e433d2d1c52a9 # v6.1.0
+        env:
+          cache-name: cache-pre-commit
+        with:
+          path: ~/.cache/pre-commit
+          {% raw %}key: ${{ env.cache-name }}-${{ hashFiles('.pre-commit-config.yaml') }}{% endraw %}
           restore-keys: |
             {% raw %}${{ env.cache-name }}-{% endraw %}
 
