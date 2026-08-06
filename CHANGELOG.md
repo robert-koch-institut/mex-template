@@ -11,8 +11,6 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Changes
 
-- let renovatebot pin SHA digests in docker compose files
-
 ### Deprecated
 
 ### Removed
@@ -20,6 +18,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Fixed
 
 ### Security
+
+## [1.4.0] - 2026-08-06
+
+### Changes
+
+- let renovatebot pin SHA digests in docker compose files
 
 ## [1.3.0] - 2026-07-01
 
