@@ -44,8 +44,8 @@ jobs:
         env:
           cache-name: cache-environment
         with:
-          path: ~/.cache/pip
-          {% raw %}key: ${{ env.cache-name }}-${{ hashFiles('*.lock') }}{% endraw %}
+          path: ~/.cache/uv
+          {% raw %}key: ${{ env.cache-name }}-${{ hashFiles('uv.lock') }}{% endraw %}
           restore-keys: |
             {% raw %}${{ env.cache-name }}-{% endraw %}
 

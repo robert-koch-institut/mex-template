@@ -9,13 +9,19 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
+- cache pre-commit hook environments in the linting workflow
+
 ### Changes
 
 ### Deprecated
 
 ### Removed
 
+- drop the unused environment cache from the cve-scan workflow
+
 ### Fixed
+
+- point the environment cache at `~/.cache/uv` instead of `~/.cache/pip`
 
 ### Security
 
