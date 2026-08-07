@@ -140,6 +140,7 @@ jobs:
     needs: release
     permissions:
       contents: write
+      id-token: write # Required for python release signing
 
     steps:
       - name: Checkout repo
@@ -167,12 +168,20 @@ jobs:
       - name: Install requirements
         run: make setup
 
-      - name: Build wheel and sdist distros and create a github release
+      - name: Build wheel and sdist distros
+        run: |
+          uv build --out-dir dist
+
+      - name: Sign Python release artifacts
+        uses: sigstore/gh-action-sigstore-python@5b79a39c381910c090341a2c9b0bf022c8b387e1 # v3.4.0
+        with:
+          inputs: ./dist/*
+
+      - name: Create a github release
         env:
-          {% raw %}GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}{% endraw %}
+          GH_TOKEN: {% raw %}${{ secrets.GITHUB_TOKEN }}{% endraw %}
         run: |
           {% raw -%}
-          uv build --out-dir dist
           gh release create ${{ needs.release.outputs.tag }} \
           --generate-notes --latest --verify-tag dist/*
           {%- endraw %}
