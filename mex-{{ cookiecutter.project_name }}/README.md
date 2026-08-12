@@ -114,7 +114,7 @@ sigstore verify identity \
 ```bash
 cosign verify-blob \
   --bundle <path-to-bundle> \
-  --certificate-identity-regexp "https://github.com/robert-koch-institut/mex-{{ cookiecutter.project_name }}/.github/workflows/release.yml@refs/heads/main" \
+  --certificate-identity "https://github.com/robert-koch-institut/mex-{{ cookiecutter.project_name }}/.github/workflows/release.yml@refs/heads/main" \
   --certificate-oidc-issuer "https://token.actions.githubusercontent.com" \
   <path-to-artifact>
 ```
