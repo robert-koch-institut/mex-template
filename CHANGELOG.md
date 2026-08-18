@@ -15,6 +15,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - make the container workflow optional via the new cookiecutter variable `containerize`
 - run test dependency services from docker compose in the generated testing workflow,
   seeded with a placeholder service to replace
+- make publishing to PyPI optional via the new cookiecutter variable `publish_to_pypi`
 
 ### Changes
 
