@@ -61,7 +61,7 @@ jobs:
 
       - name: Start containers
         working-directory: work/mex-test
-        run: docker compose up --wait placeholder
+        run: docker compose up --wait --wait-timeout 600 placeholder
 
       - name: Run smoke test
         working-directory: work/mex-test
