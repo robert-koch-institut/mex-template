@@ -10,6 +10,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Added
 
 - sign python packages using sigstore (keyless)
+- make the supported python version range configurable via the new cookiecutter
+  variables `python_version_min` and `python_version_max`
 
 ### Changes
 
@@ -18,6 +20,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Removed
 
 ### Fixed
+
+- align the generated project's `requires-python` with its CI test matrix
 
 ### Security
 
