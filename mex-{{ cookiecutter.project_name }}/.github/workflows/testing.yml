@@ -74,7 +74,7 @@ jobs:
           {%- endraw %}
 
       - name: Wait for container readiness
-        run: docker compose up --wait --wait-timeout 600 placeholder
+        run: docker compose up --wait --wait-timeout 500 placeholder
 
       - name: Run test suite
         run: make test
