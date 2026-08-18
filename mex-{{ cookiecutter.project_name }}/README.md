@@ -82,7 +82,7 @@ components of the MEx project are open-sourced under the same license as well.
 - run `mex release RULE` to release a new version where RULE determines which part of
   the version to update and is one of `major`, `minor`, `patch`.
 
-### Container workflow
+{% if cookiecutter.containerize %}### Container workflow
 
 - build image with `make image`
 - run directly using docker `make run`
@@ -95,7 +95,7 @@ Images released to GHCR are signed using [cosign](https://github.com/sigstore/co
 To verify an image manually:
 `cosign verify --certificate-identity-regexp "https://github.com/robert-koch-institut/mex-{{ cookiecutter.project_name }}/.github/workflows/release.yml@refs/heads/main" --certificate-oidc-issuer "https://token.actions.githubusercontent.com" ghcr.io/robert-koch-institut/mex-{{ cookiecutter.project_name }}:<tag>`
 
-### Python release verification
+{% endif %}### Python release verification
 
 Python release artifacts (source distributions and wheels) published to GitHub Releases are signed keyless using [sigstore](https://github.com/sigstore/gh-action-sigstore-python).
 

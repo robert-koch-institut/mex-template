@@ -1,4 +1,4 @@
-.PHONY: all setup hooks install lint unit test wheel image run start docs
+.PHONY: all setup hooks install lint unit test wheel{% if cookiecutter.containerize %} image run start{% endif %} docs
 all: install lint test
 
 LATEST = $(shell git describe --tags $(shell git rev-list --tags --max-count=1))
@@ -40,7 +40,7 @@ wheel:
 	@ echo building wheel; \
 	uv build --wheel; \
 
-image:
+{% if cookiecutter.containerize %}image:
 	# build the docker image
 	@ echo building docker image mex-{{ cookiecutter.project_name }}:${LATEST}; \
 	docker build \
@@ -59,7 +59,7 @@ start:
 	@ echo start mex-{{ cookiecutter.project_name }}:${LATEST} with compose; \
 	docker compose up --build --remove-orphans; \
 
-docs:
+{% endif %}docs:
 	# use sphinx to auto-generate html docs from code
 	@ echo generating docs; \
 	uv run sphinx-apidoc -f -o docs/source mex; \

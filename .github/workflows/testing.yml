@@ -28,6 +28,9 @@ jobs:
     timeout-minutes: 10
     permissions:
       contents: read
+    strategy:
+      matrix:
+        containerize: [ "true", "false" ]
 
     steps:
       - name: Checkout repo
@@ -54,8 +57,17 @@ jobs:
         run: make setup
 
       - name: Render template
-        run: cruft create --output-dir work --no-input --extra-context '{"project_name":"test"}' .
+        run: cruft create --output-dir work --no-input --extra-context '{"project_name":"test","containerize":"${{ matrix.containerize }}"}' .
+
+      - name: Start containers
+        working-directory: work/mex-test
+        run: docker compose up --wait placeholder
 
       - name: Run smoke test
         working-directory: work/mex-test
         run: uv run pytest
+
+      - name: Cleanup containers
+        if: always()
+        working-directory: work/mex-test
+        run: docker compose down --volumes --remove-orphans

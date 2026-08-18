@@ -1,4 +1,5 @@
 services:
+{%- if cookiecutter.containerize %}
   mex-{{ cookiecutter.project_name }}:
     build:
       context: .
@@ -11,5 +12,18 @@ services:
       retries: 5
     volumes:
       - data:/app/data
+{%- endif %}
+  # replace this placeholder with the services your test suite depends on,
+  # e.g. a database or a mock server, and start them from the testing workflow
+  placeholder:
+    image: alpine:3.22
+    command: [ "sleep", "infinity" ]
+    healthcheck:
+      test: [ "CMD", "true" ]
+      interval: 5s
+      timeout: 3s
+      retries: 3
+{%- if cookiecutter.containerize %}
 volumes:
   data:
+{%- endif %}
