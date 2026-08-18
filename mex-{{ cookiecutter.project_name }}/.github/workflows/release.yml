@@ -138,9 +138,14 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 10
     needs: release
+{%- if cookiecutter.publish_to_pypi %}
+    environment:
+      name: pypi
+      url: https://pypi.org/p/mex-{{ cookiecutter.project_name }}
+{%- endif %}
     permissions:
       contents: write
-      id-token: write # Required for python release signing
+      id-token: write # Required for python release signing{% if cookiecutter.publish_to_pypi %} and trusted publishing{% endif %}
 
     steps:
       - name: Checkout repo
@@ -171,7 +176,10 @@ jobs:
       - name: Build wheel and sdist distros
         run: |
           uv build --out-dir dist
-
+{% if cookiecutter.publish_to_pypi %}
+      - name: Publish distribution to PyPI
+        uses: pypa/gh-action-pypi-publish@dc37677b2e1c63e2034f94d8a5b11f265b73ba33 # v1.14.2
+{% endif %}
       - name: Sign Python release artifacts
         uses: sigstore/gh-action-sigstore-python@790bc6befb9d733738f18d8f895854b453640ec9 # v3.5.0
         with:
