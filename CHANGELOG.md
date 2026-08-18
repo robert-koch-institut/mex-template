@@ -12,6 +12,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - sign python packages using sigstore (keyless)
 - make the supported python version range configurable via the new cookiecutter
   variables `python_version_min` and `python_version_max`
+- make the container workflow optional via the new cookiecutter variable `containerize`
+- run test dependency services from docker compose in the generated testing workflow,
+  seeded with a placeholder service to replace
 
 ### Changes
 
