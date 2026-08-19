@@ -1,6 +1,9 @@
 .PHONY: all setup hooks install lint
 all: install lint
 
+SHELL := /bin/bash
+.SHELLFLAGS := -ec
+
 setup:
 	# install meta requirements system-wide
 	@ echo installing requirements; \
