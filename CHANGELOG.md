@@ -23,6 +23,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - align the generated project's `requires-python` with its CI test matrix
 - fix docker/build-push-action version comment
+- exit on failed sphinx-apidoc build
 
 ### Security
 
