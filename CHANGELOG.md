@@ -22,6 +22,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Fixed
 
 - align the generated project's `requires-python` with its CI test matrix
+- fix docker/build-push-action version comment
 
 ### Security
 
