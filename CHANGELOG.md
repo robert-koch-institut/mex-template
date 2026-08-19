@@ -20,6 +20,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Fixed
 
 - fix docker/build-push-action version comment
+- exit on failed sphinx-apidoc build
 
 ### Security
 
