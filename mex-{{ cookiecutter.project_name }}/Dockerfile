@@ -1,6 +1,6 @@
 # syntax=docker/dockerfile:1
 
-FROM python:3.14 AS builder
+FROM python:{{ cookiecutter.python_version_max }} AS builder
 
 WORKDIR /build
 
@@ -14,7 +14,7 @@ COPY . .
 RUN pip install --no-cache-dir -r requirements.txt
 RUN uv export --no-dev --no-editable | uv pip install --system --no-deps -r -
 
-FROM python:3.14-slim
+FROM python:{{ cookiecutter.python_version_max }}-slim
 
 LABEL org.opencontainers.image.authors="mex@rki.de"
 LABEL org.opencontainers.image.description="{{ cookiecutter.short_summary }}"
@@ -25,11 +25,9 @@ LABEL org.opencontainers.image.vendor="robert-koch-institut"
 ENV PYTHONUNBUFFERED=1
 ENV PYTHONOPTIMIZE=1
 
-ENV MEX_{{ cookiecutter.project_name|upper }}_HOST=0.0.0.0
-
 WORKDIR /app
 
-COPY --from=builder /usr/local/lib/python3.14/site-packages /usr/local/lib/python3.14/site-packages
+COPY --from=builder /usr/local/lib/python{{ cookiecutter.python_version_max }}/site-packages /usr/local/lib/python{{ cookiecutter.python_version_max }}/site-packages
 COPY --from=builder /usr/local/bin/{{ cookiecutter.project_name }} /usr/local/bin/{{ cookiecutter.project_name }}
 
 USER 10001
