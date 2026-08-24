@@ -1,6 +1,9 @@
 .PHONY: all setup hooks install lint unit test wheel{% if cookiecutter.containerize %} image run start{% endif %} docs
 all: install lint test
 
+SHELL := /bin/bash
+.SHELLFLAGS := -ec
+
 LATEST = $(shell git describe --tags $(shell git rev-list --tags --max-count=1))
 PWD = $(shell pwd)
 
