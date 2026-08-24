@@ -54,7 +54,6 @@ run: image
 	# run the service as a docker container
 	@ echo running docker container mex-{{ cookiecutter.project_name }}:${LATEST}; \
 	docker run \
-		--env MEX_{{ cookiecutter.project_name|upper }}_HOST=0.0.0.0 \
 		--publish 8080:8080 \
 		rki/mex-{{ cookiecutter.project_name }}:${LATEST}; \
 
