@@ -6,6 +6,7 @@ on:
     tags: ["**"]
   schedule:
     - cron: "14 3 * * 1-5"
+      timezone: "Europe/Berlin"
   workflow_dispatch:
 
 concurrency:
