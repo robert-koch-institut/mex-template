@@ -88,7 +88,7 @@
             ]
         },
         {
-            "description": "Python minor upgrades are done by hand, because the version is also pinned in .python-version, pyproject.toml, the linting matrix and the Dockerfile site-packages paths",
+            "description": "Python major and minor upgrades are done by hand, because the version comes from the python_version_max cookiecutter variable recorded in .cruft.json, and is rendered from there into .python-version, pyproject.toml, the CI matrices and the Dockerfile, so it cannot be bumped by editing a single file",
             "enabled": false,
             "matchDatasources": [
                 "docker"

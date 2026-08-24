@@ -11,7 +11,7 @@ on:
 
 concurrency:
   group: {% raw %}${{ github.workflow }}{% endraw %}
-  cancel-in-progress: true
+  cancel-in-progress: false
 
 env:
   PIP_DISABLE_PIP_VERSION_CHECK: on

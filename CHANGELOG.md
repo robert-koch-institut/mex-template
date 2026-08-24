@@ -21,8 +21,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - restrict renovate to a monday and wednesday schedule, so grouped updates batch up
 - set renovate timezone to Europe/Berlin
 - keep python base image updates to digests only, minor upgrades are done by hand
-- queue instead of cancel concurrent renovate runs, so a push to main cannot interrupt
-  a run that is midway through writing branches
+- queue instead of cancel concurrent renovate and cookiecutter runs, so a push to main
+  cannot interrupt a run that is midway through writing branches and PRs
 - pin all cron schedules to the Europe/Berlin timezone, so they no longer drift by an
   hour across daylight saving transitions
 
