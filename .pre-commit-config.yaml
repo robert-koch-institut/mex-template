@@ -9,7 +9,7 @@ repos:
         exclude: cookiecutter.json
       - id: check-yaml
         name: yaml
-        exclude: mex-{{ cookiecutter.project_name }}/.github/workflows
+        exclude: mex-{{ cookiecutter.project_name }}/(.github/workflows|compose.yaml)
       - id: end-of-file-fixer
         name: eof
       - id: trailing-whitespace

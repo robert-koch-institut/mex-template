@@ -81,7 +81,7 @@ jobs:
           mex release ${{ inputs.version }}
           echo "tag=$(git describe --abbrev=0 --tags)" >> "$GITHUB_OUTPUT"
           {%- endraw %}
-
+{% if cookiecutter.containerize %}
   containerize:
     runs-on: ubuntu-latest
     timeout-minutes: 10
@@ -133,7 +133,7 @@ jobs:
           {% raw %}IMAGE: ghcr.io/${{ github.repository }}@${{ steps.push_step.outputs.digest }}{% endraw %}
         run: |
           {% raw %}cosign sign --yes "$IMAGE"{% endraw %}
-
+{% endif %}
   distribute:
     runs-on: ubuntu-latest
     timeout-minutes: 10

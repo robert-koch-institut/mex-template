@@ -14,6 +14,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - enable renovate dependency dashboard and osv vulnerability alerts
 - make the supported python version range configurable via the new cookiecutter
   variables `python_version_min` and `python_version_max`
+- BREAKING: make container workflow optional via cookiecutter variable `containerize`
+  to keep container workflow in your repo: set containerize=true manually in .cruft.json
+- run test dependency services from docker compose in the generated testing workflow,
+  seeded with a placeholder service to replace
 
 ### Changes
 
