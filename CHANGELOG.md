@@ -12,16 +12,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - sign python packages using sigstore (keyless)
 - make the supported python version range configurable via the new cookiecutter
   variables `python_version_min` and `python_version_max`
-- make the container workflow optional via the new cookiecutter variable `containerize`
-- run test dependency services from docker compose in the generated testing workflow,
-  seeded with a placeholder service to replace
-- make publishing to PyPI optional via the new cookiecutter variable `publish_to_pypi`
-- validate renovate configs with a renovate-config-validator pre-commit hook
-- enable renovate dependency dashboard and osv vulnerability alerts
-- make the supported python version range configurable via the new cookiecutter
-  variables `python_version_min` and `python_version_max`
 - BREAKING: make container workflow optional via cookiecutter variable `containerize`
   to keep container workflow in your repo: set containerize=true manually in .cruft.json
+- BREAKING: make publishing to PyPI optional via cookiecutter variable `publish_to_pypi`
+  to keep publishing to pypi in your repo: set publish_to_pypi=true in .cruft.json
 - run test dependency services from docker compose in the generated testing workflow,
   seeded with a placeholder service to replace
 
