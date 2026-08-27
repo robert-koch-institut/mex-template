@@ -16,8 +16,25 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - run test dependency services from docker compose in the generated testing workflow,
   seeded with a placeholder service to replace
 - make publishing to PyPI optional via the new cookiecutter variable `publish_to_pypi`
+- validate renovate configs with a renovate-config-validator pre-commit hook
+- enable renovate dependency dashboard and osv vulnerability alerts
+- make the supported python version range configurable via the new cookiecutter
+  variables `python_version_min` and `python_version_max`
+- BREAKING: make container workflow optional via cookiecutter variable `containerize`
+  to keep container workflow in your repo: set containerize=true manually in .cruft.json
+- run test dependency services from docker compose in the generated testing workflow,
+  seeded with a placeholder service to replace
 
 ### Changes
+
+- group meta-requirements and pre-commit hook updates into a single renovate PR
+- restrict renovate to a monday and wednesday schedule, so grouped updates batch up
+- set renovate timezone to Europe/Berlin
+- keep python base image updates to digests only, minor upgrades are done by hand
+- queue instead of cancel concurrent renovate and cookiecutter runs, so a push to main
+  cannot interrupt a run that is midway through writing branches and PRs
+- pin all cron schedules to the Europe/Berlin timezone, so they no longer drift by an
+  hour across daylight saving transitions
 
 ### Deprecated
 
@@ -26,8 +43,14 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Fixed
 
 - align the generated project's `requires-python` with its CI test matrix
+- fix docker/build-push-action version comment
+- exit on failed sphinx-apidoc build
+- set eager exit shellflag in makefile
+- stop claiming release cooldown on lock file maintenance, which renovate cannot enforce
 
 ### Security
+
+- pin docker base images to sha digests
 
 ## [1.5.0] - 2026-08-06
 
