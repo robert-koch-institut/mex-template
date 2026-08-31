@@ -3,10 +3,12 @@
   "short_summary": "Write a short tagline for your project.",
   "long_summary": "Explain your project in a bit more detail, 50-100 words would be ideal. Line-breaks are not needed as the text will be auto-wrapped.",
   "containerize": true,
+  "publish_to_pypi": true,
   "python_version_min": "3.11",
   "python_version_max": "3.14",
   "__prompts__": {
     "containerize": "Whether to publish this project as a container image. Adds a Dockerfile and a release job that pushes a signed image to GHCR.",
+    "publish_to_pypi": "Whether to publish this project to PyPI on release. Requires a `pypi` environment and a configured trusted publisher on PyPI.",
     "python_version_min": "Lowest supported python version, e.g. 3.11. Sets the floor of `requires-python` and the first entry of the CI test matrix.",
     "python_version_max": "Highest supported python version, e.g. 3.14. Used for `.python-version`, the docker base image and every `setup-python` step."
   }
