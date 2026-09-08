@@ -9,6 +9,20 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
+### Changes
+
+### Deprecated
+
+### Removed
+
+### Fixed
+
+### Security
+
+## [2.0.0] - 2026-09-08
+
+### Added
+
 - sign python packages using sigstore (keyless)
 - make the supported python version range configurable via the new cookiecutter
   variables `python_version_min` and `python_version_max`
@@ -29,10 +43,6 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   cannot interrupt a run that is midway through writing branches and PRs
 - pin all cron schedules to the Europe/Berlin timezone, so they no longer drift by an
   hour across daylight saving transitions
-
-### Deprecated
-
-### Removed
 
 ### Fixed
 
