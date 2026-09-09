@@ -19,6 +19,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Security
 
+## [2.0.1] - 2026-09-09
+
+### Security
+
 - sign python release artifacts with the pinned `sigstore` CLI from requirements.txt
   instead of `sigstore/gh-action-sigstore-python`, which pulls in the third-party
   action `softprops/action-gh-release` transitively
