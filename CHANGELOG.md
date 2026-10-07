@@ -17,6 +17,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Fixed
 
+- add missing blank line after the cookiecutter workflow's changelog entry when
+  `### Changes` is empty
+
 ### Security
 
 ## [2.0.1] - 2026-09-09
