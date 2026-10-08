@@ -17,6 +17,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Fixed
 
+- mex package cooldown exception now also covers mex container updates
+
 ### Security
 
 ## [2.0.1] - 2026-09-09
