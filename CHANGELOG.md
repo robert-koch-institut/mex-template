@@ -17,6 +17,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Fixed
 
+- add missing blank line after the cookiecutter workflow's changelog entry when
+  `### Changes` is empty
 - mex package cooldown exception now also covers mex container updates
 
 ### Security
