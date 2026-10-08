@@ -102,10 +102,11 @@
             ]
         },
         {
-            "description": "Immediately apply updates of mex packages, in dedicated PR",
+            "description": "Immediately apply updates of mex packages, in dedicated PR; matches both bare pip package names (mex-common) and path-qualified docker image names (ghcr.io/robert-koch-institut/mex-backend), since those use different packageName formats",
             "groupName": null,
             "matchPackageNames": [
-                "mex-*"
+                "mex-*",
+                "**/mex-*"
             ],
             "minimumReleaseAge": "0 days"
         }
