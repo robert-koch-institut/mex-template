@@ -106,7 +106,8 @@
             "groupName": null,
             "matchPackageNames": [
                 "mex-*",
-                "**/mex-*"
+                "**/mex-*",
+                "**/mex-*/**"
             ],
             "minimumReleaseAge": "0 days"
         }
