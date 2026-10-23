@@ -17,6 +17,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Removed
 
+- renovate-config-validator pre-commit-hook to avoid node dependency
+
 ### Fixed
 
 - add missing blank line after the cookiecutter workflow's changelog entry when
