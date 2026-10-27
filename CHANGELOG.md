@@ -13,6 +13,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Changes
 
+- defer latest and version tagging after signing of image
+
 ### Deprecated
 
 ### Removed
