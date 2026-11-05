@@ -135,12 +135,12 @@ jobs:
           {% raw %}TAG: ${{ needs.release.outputs.tag }}{% endraw %}
           {% raw %}DIGEST: ${{ steps.push_step.outputs.digest }}{% endraw %}
         run: |
-          {% raw %}
+          {% raw -%}
           docker buildx imagetools create \
             --tag "${IMAGE}:latest" \
             --tag "${IMAGE}:${TAG}" \
             "${IMAGE}@${DIGEST}"
-          {% endraw %}
+          {%- endraw %}
 {% endif %}
   distribute:
     runs-on: ubuntu-latest
