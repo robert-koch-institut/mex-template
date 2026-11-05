@@ -139,6 +139,7 @@ jobs:
           docker buildx imagetools create \
             --tag "${IMAGE}:latest" \
             --tag "${IMAGE}:${TAG}" \
+            --prefer-index=false \
             "${IMAGE}@${DIGEST}"
           {%- endraw %}
 {% endif %}
