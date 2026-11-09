@@ -13,6 +13,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Changes
 
+- defer latest and version tagging after signing of image
 - pin version of github runner images
 - throttle renovate: weekly by default; tooling, renovate's own deps and docker
   digests every other week (1st and 3rd wednesday)
