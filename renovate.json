@@ -1,7 +1,22 @@
 {
     "$schema": "https://docs.renovatebot.com/renovate-schema.json",
+    "customManagers": [
+        {
+            "customType": "regex",
+            "datasourceTemplate": "github-runners",
+            "description": "Templated workflows contain jinja and are not valid YAML, so the github-actions manager falls back to a regex extractor that ignores runs-on; track the runner images here instead",
+            "managerFilePatterns": [
+                "/^mex-\\{\\{ cookiecutter\\.project_name \\}\\}/\\.github/workflows/[^/]+\\.ya?ml$/"
+            ],
+            "matchStrings": [
+                "runs-on:\\s+(?<depName>ubuntu)-(?<currentValue>\\d+\\.\\d+)"
+            ],
+            "versioningTemplate": "docker"
+        }
+    ],
     "dependencyDashboard": true,
     "enabledManagers": [
+        "custom.regex",
         "docker-compose",
         "dockerfile",
         "github-actions",
@@ -55,6 +70,13 @@
             ]
         },
         {
+            "description": "Group runner image updates of templated workflows with the other GitHub Actions updates",
+            "groupName": "github-actions",
+            "matchDatasources": [
+                "github-runners"
+            ]
+        },
+        {
             "description": "Group all non-major Python updates into a single PR",
             "groupName": "python non-major",
             "matchCurrentVersion": "!/^0/",
@@ -70,11 +92,14 @@
             ]
         },
         {
-            "description": "Group meta-requirements and pre-commit hooks into a single PR, keeping tools in sync with their hooks",
+            "description": "Group meta-requirements and pre-commit hooks into a single PR every other week, keeping tools in sync with their hooks",
             "groupName": "tooling",
             "matchManagers": [
                 "pip_requirements",
                 "pre-commit"
+            ],
+            "schedule": [
+                "* 0-5 1-7,15-21 * 3"
             ]
         },
         {
@@ -85,6 +110,20 @@
             ],
             "matchDepNames": [
                 "python"
+            ]
+        },
+        {
+            "description": "Base and compose image digests change on every upstream rebuild; batch them every other week",
+            "groupName": "docker digests",
+            "matchManagers": [
+                "docker-compose",
+                "dockerfile"
+            ],
+            "matchUpdateTypes": [
+                "digest"
+            ],
+            "schedule": [
+                "* 0-5 1-7,15-21 * 3"
             ]
         },
         {
@@ -102,12 +141,25 @@
             ]
         },
         {
-            "description": "Immediately apply updates of mex packages, in dedicated PR",
+            "description": "Renovate's own action and pre-commit hook release almost daily; batch them every other week in their own group",
+            "groupName": "renovate",
+            "matchPackageNames": [
+                "renovatebot/**"
+            ],
+            "schedule": [
+                "* 0-5 1-7,15-21 * 3"
+            ]
+        },
+        {
+            "description": "Immediately apply updates of mex packages, in dedicated PR at any time",
             "groupName": null,
             "matchPackageNames": [
                 "mex-*"
             ],
-            "minimumReleaseAge": "0 days"
+            "minimumReleaseAge": "0 days",
+            "schedule": [
+                "at any time"
+            ]
         }
     ],
     "prFooter": "",
@@ -115,7 +167,7 @@
         "enabled": true
     },
     "schedule": [
-        "on monday and wednesday"
+        "* 0-5 * * 1"
     ],
     "timezone": "Europe/Berlin",
     "vulnerabilityAlerts": {
