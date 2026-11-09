@@ -1,7 +1,22 @@
 {
     "$schema": "https://docs.renovatebot.com/renovate-schema.json",
+    "customManagers": [
+        {
+            "customType": "regex",
+            "datasourceTemplate": "github-runners",
+            "description": "Templated workflows contain jinja and are not valid YAML, so the github-actions manager falls back to a regex extractor that ignores runs-on; track the runner images here instead",
+            "managerFilePatterns": [
+                "/^mex-\\{\\{ cookiecutter\\.project_name \\}\\}/\\.github/workflows/[^/]+\\.ya?ml$/"
+            ],
+            "matchStrings": [
+                "runs-on:\\s+(?<depName>ubuntu)-(?<currentValue>\\d+\\.\\d+)"
+            ],
+            "versioningTemplate": "docker"
+        }
+    ],
     "dependencyDashboard": true,
     "enabledManagers": [
+        "custom.regex",
         "docker-compose",
         "dockerfile",
         "github-actions",
@@ -52,6 +67,13 @@
             "groupName": "github-actions",
             "matchManagers": [
                 "github-actions"
+            ]
+        },
+        {
+            "description": "Group runner image updates of templated workflows with the other GitHub Actions updates",
+            "groupName": "github-actions",
+            "matchDatasources": [
+                "github-runners"
             ]
         },
         {

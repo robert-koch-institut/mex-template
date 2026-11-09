@@ -29,7 +29,7 @@ concurrency:
 
 jobs:
   release:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-26.04
     timeout-minutes: 15
     permissions:
       contents: read
@@ -83,7 +83,7 @@ jobs:
           {%- endraw %}
 {% if cookiecutter.containerize %}
   containerize:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-26.04
     timeout-minutes: 10
     needs: release
     permissions:
@@ -135,7 +135,7 @@ jobs:
           {% raw %}cosign sign --yes "$IMAGE"{% endraw %}
 {% endif %}
   distribute:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-26.04
     timeout-minutes: 10
     needs: release
 {%- if cookiecutter.publish_to_pypi %}
