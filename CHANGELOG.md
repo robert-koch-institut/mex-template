@@ -9,6 +9,20 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
+### Changes
+
+### Deprecated
+
+### Removed
+
+### Fixed
+
+### Security
+
+## [2.1.0] - 2026-11-09
+
+### Added
+
 - support for python version 3.15
 
 ### Changes
@@ -17,8 +31,6 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - pin version of github runner images
 - throttle renovate: weekly by default; tooling, renovate's own deps and docker
   digests every other week (1st and 3rd wednesday)
-
-### Deprecated
 
 ### Removed
 
@@ -29,8 +41,6 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - add missing blank line after the cookiecutter workflow's changelog entry when
   `### Changes` is empty
 - mex package cooldown exception now also covers mex container updates
-
-### Security
 
 ## [2.0.1] - 2026-09-09
 
