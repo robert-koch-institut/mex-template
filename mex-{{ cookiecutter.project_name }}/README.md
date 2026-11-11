@@ -102,6 +102,7 @@ Python release artifacts (source distributions and wheels) published to GitHub R
 To verify a release artifact manually, download the artifact (e.g. `mex_{{ cookiecutter.project_name }}-<tag>-py3-none-any.whl`) and its Sigstore bundle (`mex_{{ cookiecutter.project_name }}-<tag>-py3-none-any.whl.sigstore.json`), then run either:
 
 **Using `sigstore`**:
+
 ```bash
 sigstore verify identity \
   --bundle <path-to-bundle> \
@@ -111,6 +112,7 @@ sigstore verify identity \
 ```
 
 **Using `cosign`**:
+
 ```bash
 cosign verify-blob \
   --bundle <path-to-bundle> \

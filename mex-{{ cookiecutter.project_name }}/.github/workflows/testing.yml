@@ -5,18 +5,10 @@ on:
     branches: ["main"]
     tags: ["**"]
   pull_request:
-    types:
-      - opened
-      - reopened
-      - synchronize
   workflow_dispatch:
 
 env:
-  PIP_DISABLE_PIP_VERSION_CHECK: on
-  PIP_NO_CLEAN: on
-  PIP_NO_INPUT: on
-  PIP_PREFER_BINARY: on
-  PY_COLORS: "1"
+  FORCE_COLOR: "1"
 
 concurrency:
   group: {% raw %}${{ github.workflow }}-${{ github.ref }}{% endraw %}
@@ -35,36 +27,24 @@ jobs:
     steps:
       - name: Checkout repo
         uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
-        with:
-          fetch-depth: 1
 
       - name: Start containers
         run: docker compose up --detach placeholder
 
-      - name: Cache requirements
-        uses: actions/cache@55cc8345863c7cc4c66a329aec7e433d2d1c52a9 # v6.1.0
-        env:
-          cache-name: cache-requirements
-        with:
-          path: ~/.cache/pip
-          {% raw %}key: ${{ env.cache-name }}-${{ hashFiles('requirements.txt') }}{% endraw %}
-          restore-keys: |
-            {% raw %}${{ env.cache-name }}-{% endraw %}
-
       - name: Cache environment
         uses: actions/cache@55cc8345863c7cc4c66a329aec7e433d2d1c52a9 # v6.1.0
-        env:
-          cache-name: cache-environment
         with:
           path: ~/.cache/uv
-          {% raw %}key: ${{ env.cache-name }}-${{ hashFiles('uv.lock') }}{% endraw %}
+          {% raw %}key: cache-environment-${{ hashFiles('uv.lock') }}{% endraw %}
           restore-keys: |
-            {% raw %}${{ env.cache-name }}-{% endraw %}
+            cache-environment-
 
       - name: Setup python
         uses: actions/setup-python@6d4fd22b20465ccc0f7354476588e8df7c9ca0e0 # v7.1.0
         with:
           python-version: "{{ cookiecutter.python_version_max }}"
+          cache: pip
+          cache-dependency-path: requirements.txt
 
       - name: Install requirements
         run: |

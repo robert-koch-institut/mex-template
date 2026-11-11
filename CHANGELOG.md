@@ -11,6 +11,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Changes
 
+- replace `PY_COLORS` with `FORCE_COLOR` in workflows to color output of more tools
+- move pip flags from workflow env vars into `make setup` and `mex.bat`
+- slim down workflows: use built-in pip cache of setup-python, drop defaults and checkouts
+- scope `MEX_BOT_EMAIL` and `MEX_BOT_USER` env vars to the steps that use them
+
 ### Deprecated
 
 ### Removed

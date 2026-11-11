@@ -2,10 +2,6 @@ name: Reviewing
 
 on:
   pull_request:
-    types:
-      - opened
-      - reopened
-      - synchronize
   workflow_dispatch:
 
 concurrency:
@@ -21,11 +17,6 @@ jobs:
       contents: read
 
     steps:
-      - name: Checkout repo
-        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
-        with:
-          fetch-depth: 1
-
       - name: Resolve assignee
         id: resolve
         env:
@@ -50,29 +41,21 @@ jobs:
 
   check-changelog:
     name: Check changelog
+    if: github.actor != 'RKIMetadataExchange'
     runs-on: ubuntu-26.04
     timeout-minutes: 10
     permissions:
       contents: read
+      pull-requests: read
 
     steps:
-      - name: Checkout Repository
-        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
-        with:
-          fetch-depth: 0
-
       - name: Check for CHANGELOG.md changes
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          PR_NUMBER: ${{ github.event.pull_request.number }}
         run: |
-          if [ "${{ github.actor }}" = "RKIMetadataExchange" ]; then
-            echo "Actor is 'RKIMetadataExchange'. Skipping changelog check."
-            exit 0;
-          fi
-
-          if git diff --quiet "origin/${{ github.base_ref }}"...HEAD -- "CHANGELOG.md"; then
+          if ! gh api --paginate "repos/${GITHUB_REPOSITORY}/pulls/${PR_NUMBER}/files" --jq '.[].filename' | grep -x CHANGELOG.md > /dev/null; then
             echo "Error: The CHANGELOG.md has not been modified."
             echo "Please add your changes to CHANGELOG.md before merging."
             exit 1
-          else
-            echo "CHANGELOG.md has been modified."
-            exit 0
           fi

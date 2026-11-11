@@ -14,13 +14,7 @@ concurrency:
   cancel-in-progress: false
 
 env:
-  PIP_DISABLE_PIP_VERSION_CHECK: on
-  PIP_NO_CLEAN: on
-  PIP_NO_INPUT: on
-  PIP_PREFER_BINARY: on
-  PY_COLORS: "1"
-  MEX_BOT_EMAIL: mex@rki.de
-  MEX_BOT_USER: RKIMetadataExchange
+  FORCE_COLOR: "1"
 
 jobs:
   cruft:
@@ -37,26 +31,20 @@ jobs:
           fetch-depth: 0
           persist-credentials: false
 
-      - name: Cache requirements
-        uses: actions/cache@55cc8345863c7cc4c66a329aec7e433d2d1c52a9 # v6.1.0
-        env:
-          cache-name: cache-requirements
-        with:
-          path: ~/.cache/pip
-          {% raw %}key: ${{ env.cache-name }}-${{ hashFiles('requirements.txt') }}{% endraw %}
-          restore-keys: |
-            {% raw %}${{ env.cache-name }}-{% endraw %}
-
       - name: Setup python
         uses: actions/setup-python@6d4fd22b20465ccc0f7354476588e8df7c9ca0e0 # v7.1.0
         with:
           python-version: "{{ cookiecutter.python_version_max }}"
+          cache: pip
+          cache-dependency-path: requirements.txt
 
       - name: Install requirements
         run: make setup
 
       - name: Configure git
         env:
+          MEX_BOT_EMAIL: mex@rki.de
+          MEX_BOT_USER: RKIMetadataExchange
           {% raw %}SIGNING_KEY: ${{ secrets.MEX_SIGNING_KEY }}{% endraw %}
           {% raw %}SIGNING_PUB: ${{ vars.MEX_SIGNING_PUB }}{% endraw %}
         run: |
@@ -71,7 +59,7 @@ jobs:
           {% raw %}GH_TOKEN: ${{ secrets.MEX_COOKIECUTTER_TOKEN }}{% endraw %}
         run: |
           {% raw -%}
-          template_url=$(python -c "print(__import__('json').load(open('.cruft.json'))['template'])")
+          template_url=$(jq -r .template .cruft.json)
           template_tag=$(git ls-remote --tags --sort=-v:refname "${template_url}" | grep -v '\^{}' | head -1 | sed 's|.*refs/tags/||')
           if cruft check --checkout "${template_tag}"; then
             echo template is up to date
@@ -87,15 +75,14 @@ jobs:
           cruft update --checkout "${template_tag}" --skip-apply-ask
           printf '### Changes\n\n- new template %s/releases/tag/%s\n' "$template_url" "$template_tag" > .cruft-pr-body
           sed -i "0,/^### Changes$/{/^### Changes$/{N;N;/\n\n- /{s|\n\n|\n\n- new template ${template_url}/releases/tag/${template_tag}\n|;b;};s|\n\n|\n\n- new template ${template_url}/releases/tag/${template_tag}\n\n|}}" CHANGELOG.md
-          if [[ $(find . -type f -name "*.rej" | wc -l) -ne 0 ]]; then
-            printf '\n### Conflicts\n' >> .cruft-pr-body
+          rejects=$(find . -type f -name "*.rej")
+          if [[ -n "${rejects}" ]]; then
             echo "has_conflicts=true" >> "$GITHUB_OUTPUT"
+            printf '\n### Conflicts\n' >> .cruft-pr-body
+            while read -r rej; do
+              printf '\n```diff\n%s\n```\n' "$(cat "${rej}")" >> .cruft-pr-body
+            done <<< "${rejects}"
           fi
-          find . -type f -name "*.rej" | while read -r line ; do
-            printf '\n```diff\n' >> .cruft-pr-body
-            cat ${line} >> .cruft-pr-body
-            printf '```\n' >> .cruft-pr-body
-          done
           git add --all --verbose
           git commit --message "Update mex-template to $template_tag" --verbose
           {%- endraw %}
@@ -114,6 +101,7 @@ jobs:
       - name: Create pull request
         if: {% raw %}steps.update.outputs.template_tag{% endraw %}
         env:
+          MEX_BOT_USER: RKIMetadataExchange
           {% raw %}GH_TOKEN: ${{ secrets.MEX_COOKIECUTTER_TOKEN }}{% endraw %}
           {% raw %}template_tag: ${{ steps.update.outputs.template_tag }}{% endraw %}
           {% raw %}has_conflicts: ${{ steps.update.outputs.has_conflicts }}{% endraw %}
